@@ -20,21 +20,16 @@
 
 5. From avaialble Github Actions select and run destroy on main branch.
    
-7. Create new git branch and:
+6. Create new git branch and:
     1. Modify tasks-phase1.md file.
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
-
 ![img.pnng](shared-files/Step-6-new-branch-pr.png)
 
-
-
-
-9. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
+7. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
 ![img.pnng](shared-files/module-dataproc.png)
-
 
 <h3>module.dataproc</h3>
 <ul>
@@ -43,9 +38,9 @@
 <li>
    Do jego zasobów należą: 
    <ul>
-      <li> **google_project_service.dataproc** - Odpowiada za włączenie usługi API Dataproc w projekcie. Jest to kluczowy krok przed utworzeniem klastra, ponieważ bez aktywnego API Dataproc utworzenie klastra Dataproc nie byłoby możliwe. </li>
+      <li> google_project_service.dataproc - Odpowiada za włączenie usługi API Dataproc w projekcie. Jest to kluczowy krok przed utworzeniem klastra, ponieważ bez aktywnego API Dataproc utworzenie klastra Dataproc nie byłoby możliwe. </li>
       <li>
-         **google_dataproc_cluster.tbd-dataproc-cluster** - Odpowiada za konfigurację i utworzenie klastra Dataproc. W tym zasobie definiowane są szczegóły konfiguracji klastra, takie jak: 
+         google_dataproc_cluster.tbd-dataproc-cluster - Odpowiada za konfigurację i utworzenie klastra Dataproc. W tym zasobie definiowane są szczegóły konfiguracji klastra, takie jak: 
          <ul>
             <li>liczba i rodzaj węzłów (master i worker nodes)</li>
             <li>rodzaj maszyn wirtualnych i ich zasoby (typ maszyn, dyski, sieć)</li>
@@ -55,23 +50,22 @@
    </ul>
 </li>
 </ul>
-
-
-
-
-   ***describe one selected module and put the output of terraform graph for this module here***
    
-11. Reach YARN UI
+8. Reach YARN UI
 
+![img.pnng](shared-files/Step-6-yarnui-1.png)
+![img.pnng](shared-files/Step-6-yarnui-2.png)
+
+<p>Polecenie użyte do ustawienia tunela:</p>
+```bash
 gcloud compute ssh tbd-cluster-m \
   --project=tbd-2024zz-305978 \
   --zone=europe-west1-d \
   --tunnel-through-iap \
   -- -L 8088:localhost:8088
+```
 
 
-   
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
    
 11. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
