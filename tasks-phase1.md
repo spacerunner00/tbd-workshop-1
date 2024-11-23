@@ -42,6 +42,21 @@ gcloud compute ssh tbd-cluster-m \
    
 11. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
+   
+<p>VPC Network</p>
+<ul>
+	<li>Nazwa VPC: main-vpc</li>
+	<li>Liczba podsieci: 2</li>
+	<li>Podsieć 1: composer-subnet-01</li>
+	<li>Gateway: 10.11.0.1</li>
+	<li><ul>
+
+  <li>Region: europe-west1</li>
+  <li>Primary IPv4 range: 10.11.0.0/16</li>
+	</ul></li>
+</ul>
+
+
     2. Description of the components of service accounts
     3. List of buckets for disposal
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
