@@ -68,7 +68,7 @@ gcloud compute ssh tbd-cluster-m \
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
   
 ### Diagram
-![img.png](shared-files/tbd-phase-1-vpc-diagram.png.png)
+![img.png](shared-files/tbd-phase-1-vpc-diagram.png)
 
 ### VPC Network
 - **Nazwa VPC:** main-vpc
