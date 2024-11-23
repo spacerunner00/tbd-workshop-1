@@ -3,16 +3,17 @@
 ![img.png](doc/figures/destroy.png)
 
 1. Authors:
-   <li>Aleksandra Gryzik</li>
-   <li>Gabriel Skowron-Rodriguez</li>
-   <li>Jakub Rozkosz</li>
-   \\
-   <p>Group nr: 13</p>
-   <p>Link to forked repo: https://github.com/spacerunner00/tbd-workshop-1.git</p>
-   
-2. Follow all steps in README.md.
 
-3. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
+<li>Aleksandra Gryzik</li>
+<li>Gabriel Skowron-Rodriguez</li>
+<li>Jakub Rozkosz</li>
+   
+<p>Group nr: 13</p>
+<p>Link to forked repo: https://github.com/spacerunner00/tbd-workshop-1.git</p>
+   
+3. Follow all steps in README.md.
+
+4. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
 
   ![img.png](doc/figures/discounts.png)
 
