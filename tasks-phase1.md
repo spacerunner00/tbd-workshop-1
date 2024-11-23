@@ -327,10 +327,44 @@ gcloud compute ssh tbd-cluster-m \
 
 <p>Apache Spark</p>
 <span>Do poprawnego działania Apache Spark w środowisku Vertex AI Workbench wykorzystuje porty:</span>
-
-  <ul>
-	
-  </ul>
+<ul>
+   <li>
+       30000
+       <ul>
+           <li>Port używany przez Spark Driver do komunikacji z Executorami</li>
+       </ul>
+   </li>
+   <li>
+       30001
+       <ul>
+           <li>Port używany przez Spark Block Manager do przesyłania danych pomiędzy Executorami i Driverem</li>
+       </ul>
+   </li>
+   <li>
+       8088
+       <ul>
+           <li>Port YARN ResourceManager Web UI, pozwala na monitorowanie stanu klastrów i zadań</li>
+       </ul>
+   </li>
+   <li>
+       8030-8033
+       <ul>
+           <li>Porty YARN ResourceManager, zarządzające zasobami w klastrze</li>
+       </ul>
+   </li>
+   <li>
+       18080
+       <ul>
+           <li>Port Spark History Server, służący do przeglądania logów i wyników zakończonych aplikacji Spark</li>
+       </ul>
+   </li>
+   <li>
+       10200
+       <ul>
+           <li>Port Application History Server YARN, przechowuje historię zakończonych aplikacji</li>
+       </ul>
+   </li>
+</ul>
     ***place your diagram here***
 
 12. Create a new PR and add costs by entering the expected consumption into Infracost
