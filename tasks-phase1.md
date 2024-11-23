@@ -3,13 +3,12 @@
 ![img.png](doc/figures/destroy.png)
 
 1. Authors:
-	
-<li>Aleksandra Gryzik</li>
-<li>Gabriel Skowron-Rodriguez</li>
-<li>Jakub Rozkosz</li>
-
-<p>Group nr: 13</p>
-<p>Link to forked repo: https://github.com/spacerunner00/tbd-workshop-1.git</p>
+   <li>Aleksandra Gryzik</li>
+   <li>Gabriel Skowron-Rodriguez</li>
+   <li>Jakub Rozkosz</li>
+   \\
+   <p>Group nr: 13</p>
+   <p>Link to forked repo: https://github.com/spacerunner00/tbd-workshop-1.git</p>
    
 2. Follow all steps in README.md.
 
