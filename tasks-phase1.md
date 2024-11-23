@@ -1,12 +1,15 @@
-IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each work session. You can recreate infrastructure by creating new PR and merging it to master.
+![image](https://github.com/user-attachments/assets/3f594d20-bef1-4035-b54c-0441cb1bda97)IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each work session. You can recreate infrastructure by creating new PR and merging it to master.
   
 ![img.png](doc/figures/destroy.png)
 
 1. Authors:
-	Aleksandra
-   <p>Group nr: 13</p>
+	
+<li>Aleksandra Gryzik</li>
+<li>Gabriel Skowron-Rodriguez</li>
+<li>Jakub Rozkosz</li>
 
-   ***link to forked repo***
+<p>Group nr: 13</p>
+<p>Link to forked repo: https://github.com/spacerunner00/tbd-workshop-1.git</p>
    
 2. Follow all steps in README.md.
 
@@ -21,14 +24,17 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
-    ***place the screenshot from GA after succesfull application of release***
+
+![img.pnng](shared-files/Step-6-new-branch-pr.png)
 
 
-8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
+
+
+9. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     ***describe one selected module and put the output of terraform graph for this module here***
    
-9. Reach YARN UI
+10. Reach YARN UI
 
 gcloud compute ssh tbd-cluster-m \
   --project=tbd-2024zz-305978 \
