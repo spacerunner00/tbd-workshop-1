@@ -66,6 +66,9 @@ gcloud compute ssh tbd-cluster-m \
     2. Description of the components of service accounts
     3. List of buckets for disposal
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
+  
+### Diagram
+![img.pnng](shared-files/tbd-phase-1-vpc-diagram.png.png)
 
 ### VPC Network
 - **Nazwa VPC:** main-vpc
@@ -204,8 +207,6 @@ Do poprawnego działania Apache Spark w środowisku Vertex AI Workbench wykorzys
   - Port Application History Server YARN, przechowuje historię zakończonych aplikacji
 
 
-    ***place your diagram here***
-
 10. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
@@ -239,11 +240,11 @@ ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w 
 ![img.pnng](shared-files/Step-12-pyspark-2.png)
 ![img.pnng](shared-files/Step-12-pyspark-3.png)
    
-14. Find and correct the error in spark-job.py
+13. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-15. Additional tasks using Terraform:
+14. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
