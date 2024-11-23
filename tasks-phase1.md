@@ -146,8 +146,9 @@ gcloud compute ssh tbd-cluster-m \
                        Foldery:
                        <ul>
                            <li>dags/ – Pliki DAG dla Airflow</li>
+			   <li>data/ – Dane przetwarzane przez zadania</li>
                            <li>logs/ – Logi zadań Airflow</li>
-                           <li>data/ – Dane przetwarzane przez zadania</li>
+			   <li>plugins/ - Pluginy</li>
                        </ul>
                    </li>
                </ul>
@@ -165,9 +166,10 @@ gcloud compute ssh tbd-cluster-m \
                    <li>
                        Foldery:
                        <ul>
-                           <li>dags/ – Pliki DAG</li>
-                           <li>logs/ – Logi Airflow</li>
-                           <li>data/ – Dane przetwarzane</li>
+                           <li>dags/ – Pliki DAG dla Airflow</li>
+			   <li>data/ – Dane przetwarzane przez zadania</li>
+                           <li>logs/ – Logi zadań Airflow</li>
+			   <li>plugins/ - Pluginy</li>    
                        </ul>
                    </li>
                </ul>
@@ -185,8 +187,10 @@ gcloud compute ssh tbd-cluster-m \
                    <li>
                        Foldery:
                        <ul>
-                           <li>dags/ – Plik airflow_monitoring.py</li>
-                           <li>logs/ – Logi Airflow</li>
+                           <li>dags/ – Pliki DAG dla Airflow</li>
+			   <li>data/ – Dane przetwarzane przez zadania</li>
+                           <li>logs/ – Logi zadań Airflow</li>
+			   <li>plugins/ - Pluginy</li>  
                        </ul>
                    </li>
                </ul>
