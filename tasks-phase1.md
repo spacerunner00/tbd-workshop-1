@@ -63,7 +63,6 @@ gcloud compute ssh tbd-cluster-m \
   --zone=europe-west1-d \
   --tunnel-through-iap \
   -- -L 8088:localhost:8088
-```
 
 
    
