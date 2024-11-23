@@ -255,6 +255,77 @@ gcloud compute ssh tbd-cluster-m \
        </ul>
    </li>
 </ul>
+
+<p>Lista instancji VM</p>
+<ul>
+   <li>
+       tbd-cluster-m
+       <ul>
+           <li>Rola: Master node w klastrze Dataproc</li>
+           <li>Lokalizacja: europe-west1-d</li>
+           <li>Internal IP: 10.10.10.3</li>
+           <li>Typ maszyny: e2-standard-2</li>
+           <li>
+               Konfiguracja:
+               <ul>
+                   <li>CPU: Intel Broadwell</li>
+                   <li>Pamięć: Standard dla e2-standard-2</li>
+               </ul>
+           </li>
+           <li>Opis: Zarządza zadaniami w w klastrze Dataproc. Koordynuje działania workerów.</li>
+       </ul>
+   </li>
+   <li>
+       tbd-cluster-w-0
+       <ul>
+           <li>Rola: Worker node 0 w klastrze Dataproc</li>
+           <li>Lokalizacja: europe-west1-d</li>
+           <li>Internal IP: 10.10.10.2</li>
+           <li>Typ maszyny: e2-standard-2</li>
+           <li>
+               Konfiguracja:
+               <ul>
+                   <li>CPU: Intel Broadwell</li>
+               </ul>
+           </li>
+           <li>Opis: Wykonuje zadania zlecone przez Master Node w ramach klastrów Dataproc.</li>
+       </ul>
+   </li>
+   <li>
+       tbd-cluster-w-1
+       <ul>
+           <li>Rola: Worker node 1 w klastrze Dataproc</li>
+           <li>Lokalizacja: europe-west1-d</li>
+           <li>Internal IP: 10.10.10.4</li>
+           <li>Typ maszyny: e2-standard-2</li>
+           <li>
+               Konfiguracja:
+               <ul>
+                   <li>CPU: Intel Broadwell</li>
+               </ul>
+           </li>
+           <li>Opis: Wykonuje zadania zlecone przez Master Node w ramach klastrów Dataproc.</li>
+       </ul>
+   </li>
+   <li>
+       tbd-2024zz-305978-notebook
+       <ul>
+           <li>Rola: Vertex AI Workbench Notebook Instance</li>
+           <li>Lokalizacja: europe-west1-b</li>
+           <li>Internal IP: 10.10.10.5</li>
+           <li>Typ maszyny: e2-standard-2</li>
+           <li>
+               Konfiguracja:
+               <ul>
+                   <li>CPU: Intel Broadwell</li>
+               </ul>
+           </li>
+           <li>Użycie: Środowisko do uruchamiania kodu Spark </li>
+       </ul>
+   </li>
+</ul>
+
+
   
     ***place your diagram here***
 
