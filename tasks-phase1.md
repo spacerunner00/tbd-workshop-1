@@ -31,365 +31,179 @@ Link to forked repo: https://github.com/spacerunner00/tbd-workshop-1.git
 
 ![img.pnng](shared-files/module-dataproc.png)
 
-<h3>module.dataproc</h3>
-<ul>
-   <li>Lokalizacja *./modules/dataproc/*</li>
-   <li>Moduł *module.data* to moduł terraform odpowiedzialny za stworzenie klastra Dataproc w Google Cloud.</li>
-<li>
-   Do jego zasobów należą: 
-   <ul>
-      <li> google_project_service.dataproc - Odpowiada za włączenie usługi API Dataproc w projekcie. Jest to kluczowy krok przed utworzeniem klastra, ponieważ bez aktywnego API Dataproc utworzenie klastra Dataproc nie byłoby możliwe. </li>
-      <li>
-         google_dataproc_cluster.tbd-dataproc-cluster - Odpowiada za konfigurację i utworzenie klastra Dataproc. W tym zasobie definiowane są szczegóły konfiguracji klastra, takie jak: 
-         <ul>
-            <li>liczba i rodzaj węzłów (master i worker nodes)</li>
-            <li>rodzaj maszyn wirtualnych i ich zasoby (typ maszyn, dyski, sieć)</li>
-            <li>oprogramowanie i inicjalizacja, w tym wersja obrazu oraz skrypty inicjalizacyjne</li>
-         </ul>
-      </li>
-   </ul>
-</li>
-</ul>
-   
+### module.dataproc
+
+- **Lokalizacja:** `./modules/dataproc/`
+- **Moduł `module.dataproc`** to moduł Terraform odpowiedzialny za stworzenie klastra Dataproc w Google Cloud.
+
+Do jego zasobów należą: 
+  - **google_project_service.dataproc**  
+    Odpowiada za włączenie usługi API Dataproc w projekcie. Jest to kluczowy krok przed utworzeniem klastra, ponieważ bez aktywnego API Dataproc utworzenie klastra Dataproc nie byłoby możliwe.
+  - **google_dataproc_cluster.tbd-dataproc-cluster**  
+    Odpowiada za konfigurację i utworzenie klastra Dataproc. W tym zasobie definiowane są szczegóły konfiguracji klastra, takie jak: 
+    - liczba i rodzaj węzłów (*master* i *worker nodes*)
+    - rodzaj maszyn wirtualnych i ich zasoby (typ maszyn, dyski, sieć)
+    - oprogramowanie i inicjalizacja, w tym wersja obrazu oraz skrypty inicjalizacyjne
+
 8. Reach YARN UI
 
 ![img.pnng](shared-files/Step-8-yarnui-1.png)
 ![img.pnng](shared-files/Step-8-yarnui-2.png)
 
+**Polecenie użyte do ustawienia tunelu:**
 
-<p>Polecenie użyte do ustawienia tunela:</p>
-<p>gcloud compute ssh tbd-cluster-m \
+```bash
+gcloud compute ssh tbd-cluster-m \
   --project=tbd-2024zz-305978 \
   --zone=europe-west1-d \
   --tunnel-through-iap \
-  -- -L 8088:localhost:8088</p>
+  -- -L 8088:localhost:8088
+```
 
    
-11. Draw an architecture diagram (e.g. in draw.io) that includes:
+9. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
     2. Description of the components of service accounts
     3. List of buckets for disposal
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
 
+### VPC Network
+- **Nazwa VPC:** main-vpc
+- **Liczba podsieci:** 2
+  - **Podsieć 1:** composer-subnet-01
+    - Gateway: 10.11.0.1
+    - Region: europe-west1
+    - Primary IPv4 range: 10.11.0.0/16
+  - **Podsieć 3:** subnet-01
+    - Gateway: 10.11.0.1
+    - Region: europe-west1
+    - Primary IPv4 range: 10.10.10.0/24
 
-<p>VPC Network</p>
-<ul>
-   <li>Nazwa VPC: main-vpc</li>
-   <li>Liczba podsieci: 2</li>
-   <li>
-       Podsieć 1: composer-subnet-01
-       <ul>
-           <li>Gateway: 10.11.0.1</li>
-           <li>Region: europe-west1</li>
-           <li>Primary IPv4 range: 10.11.0.0/16</li>
-       </ul>
-   </li>
-   <li>
-       Podsieć 3: subnet-01
-       <ul>
-           <li>Gateway: 10.11.0.1</li>
-           <li>Region: europe-west1</li>
-           <li>Primary IPv4 range: 10.10.10.0/24</li>
-       </ul>
-   </li>
-</ul>
+### Service Accounts
+- **tbd-2024zz-305978-data@tbd-2024zz-305978.iam.gserviceaccount.com**
+  - Opis: Konto do operacji: logowania, monitorowania, zarządzania zasobami.
+- **tbd-2024zz-305978-lab@tbd-2024zz-305978.iam.gserviceaccount.com**
+  - Opis: Konto do operacji: logowania, monitorowania, zarządzania zasobami.
+- **587948061270-compute@developer.gserviceaccount.com**
+  - Opis: Konto używane przez maszyny wirtualne w Compute Engine.
 
-<p>Service accounts</p>
-<ul>
-   <li>
-       tbd-2024zz-305978-data@tbd-2024zz-305978.iam.gserviceaccount.com
-       <ul>
-           <p>Opis: Konto do operacji: logowania, monitorowania, zarządzania zasobami.</p>
-       </ul>
-   </li>
-   <li>
-       tbd-2024zz-305978-lab@tbd-2024zz-305978.iam.gserviceaccount.com
-       <ul>
-           <p>Opis: Konto do operacji: logowania, monitorowania, zarządzania zasobami.</p>
-       </ul>
-   </li>
-   <li>
-       587948061270-compute@developer.gserviceaccount.com
-       <ul>
-           <li>Opis: Konto używane przez maszyny wirutalne w Compute Engine.</li>
-       </ul>
-   </li>
-</ul>
+### Google Cloud Storage Buckets
+- **dataproc-temp-europe-west1-587948061270**
+  - Lokalizacja: europe-west1
+  - Cel: Tymczasowe przechowywanie danych podczas operacji Dataproc
+  - Zawartość:
+    - Foldery:
+      - mapreduce-job-history/ – Dane historii zadań MapReduce
+      - spark-job-history/ – Dane historii zadań Spark
+      - yarn-logs/ – Logi YARN
+- **dataproc-staging-europe-west1-587948061270**
+  - Lokalizacja: europe-west1
+  - Cel: Staging danych dla Dataproc
+  - Zawartość:
+    - Foldery:
+      - mapreduce-job-history/ – Historia zadań MapReduce
+      - google-cloud-dataproc-metainfo/ – Metadane Dataproc
+      - tbd-cluster-* – Dane staging dla klastra
+- **europe-west1-demo-lab-6c0e8263-bucket**
+  - Lokalizacja: europe-west1
+  - Cel: Związany z Airflow w środowisku testowym
+  - Zawartość:
+    - Foldery:
+      - dags/ – Pliki DAG dla Airflow
+      - data/ – Dane przetwarzane przez zadania
+      - logs/ – Logi zadań Airflow
+      - plugins/ - Pluginy
+- **europe-west1-demo-lab-9f3509c0-bucket**
+  - Lokalizacja: europe-west1
+  - Cel: Związany z monitorowaniem i zadaniami Airflow
+  - Zawartość:
+    - Foldery:
+      - dags/ – Pliki DAG dla Airflow
+      - data/ – Dane przetwarzane przez zadania
+      - logs/ – Logi zadań Airflow
+      - plugins/ - Pluginy
+- **europe-west1-demo-lab-eb9c6219-bucket**
+  - Lokalizacja: europe-west1
+  - Cel: Przechowywanie plików DAG i logów związanych z Airflow
+  - Zawartość:
+    - Foldery:
+      - dags/ – Pliki DAG dla Airflow
+      - data/ – Dane przetwarzane przez zadania
+      - logs/ – Logi zadań Airflow
+      - plugins/ - Pluginy
+- **tbd-2024zz-305978-code**
+  - Lokalizacja: europe-west1
+  - Cel: Przechowywanie kodu dla zadań Spark
+  - Zawartość:
+    - Plik: spark-job.py – Skrypt do uruchamiania zadań Spark
+- **tbd-2024zz-305978-conf**
+  - Lokalizacja: europe-west1
+  - Cel: Przechowywanie plików konfiguracyjnych
+  - Zawartość:
+    - Folder: scripts/
+      - Plik: notebook_post_startup_script.sh – Skrypt uruchamiany po starcie notebooka
+- **tbd-2024zz-305978-data**
+  - Lokalizacja: europe-west1
+  - Cel: Przechowywanie danych wejściowych i wyjściowych
+  - Zawartość: Brak plików w tej chwili
+- **tbd-2024zz-305978-state**
+  - Lokalizacja: europe-west1
+  - Cel: Przechowywanie stanu infrastruktury (np. Terraform state)
+  - Zawartość:
+    - Folder: cicd/
+      - Plik: default.tfstate – Plik stanu Terraform
+
+### Lista instancji VM
+- **tbd-cluster-m**
+  - Rola: Master node w klastrze Dataproc
+  - Lokalizacja: europe-west1-d
+  - Internal IP: 10.10.10.3
+  - Typ maszyny: e2-standard-2
+  - Konfiguracja:
+    - CPU: Intel Broadwell
+    - Pamięć: Standard dla e2-standard-2
+  - Opis: Zarządza zadaniami w klastrze Dataproc. Koordynuje działania workerów.
+- **tbd-cluster-w-0**
+  - Rola: Worker node 0 w klastrze Dataproc
+  - Lokalizacja: europe-west1-d
+  - Internal IP: 10.10.10.2
+  - Typ maszyny: e2-standard-2
+  - Konfiguracja:
+    - CPU: Intel Broadwell
+  - Opis: Wykonuje zadania zlecone przez Master Node w ramach klastrów Dataproc.
+- **tbd-cluster-w-1**
+  - Rola: Worker node 1 w klastrze Dataproc
+  - Lokalizacja: europe-west1-d
+  - Internal IP: 10.10.10.4
+  - Typ maszyny: e2-standard-2
+  - Konfiguracja:
+    - CPU: Intel Broadwell
+  - Opis: Wykonuje zadania zlecone przez Master Node w ramach klastrów Dataproc.
+- **tbd-2024zz-305978-notebook**
+  - Rola: Vertex AI Workbench Notebook Instance
+  - Lokalizacja: europe-west1-b
+  - Internal IP: 10.10.10.5
+  - Typ maszyny: e2-standard-2
+  - Konfiguracja:
+    - CPU: Intel Broadwell
+  - Użycie: Środowisko do uruchamiania kodu Spark
+
+### Apache Spark
+Do poprawnego działania Apache Spark w środowisku Vertex AI Workbench wykorzystuje porty:
+- **30000**
+  - Port używany przez Spark Driver do komunikacji z Executorami
+- **30001**
+  - Port używany przez Spark Block Manager do przesyłania danych pomiędzy Executorami i Driverem
+- **8088**
+  - Port YARN ResourceManager Web UI, pozwala na monitorowanie stanu klastrów i zadań
+- **8030-8033**
+  - Porty YARN ResourceManager, zarządzające zasobami w klastrze
+- **18080**
+  - Port Spark History Server, służący do przeglądania logów i wyników zakończonych aplikacji Spark
+- **10200**
+  - Port Application History Server YARN, przechowuje historię zakończonych aplikacji
 
 
-<p>Google Cloud Storage Buckets</p>
-<ul>
-   <li>
-       dataproc-temp-europe-west1-587948061270
-       <ul>
-           <li>Lokalizacja: europe-west1</li>
-           <li>Cel: Tymczasowe przechowywanie danych podczas operacji Dataproc</li>
-           <li>
-               Zawartość:
-               <ul>
-                   <li>
-                       Foldery:
-                       <ul>
-                           <li>mapreduce-job-history/ – Dane historii zadań MapReduce</li>
-                           <li>spark-job-history/ – Dane historii zadań Spark</li>
-                           <li>yarn-logs/ – Logi YARN</li>
-                       </ul>
-                   </li>
-               </ul>
-           </li>
-       </ul>
-   </li>
-   <li>
-       dataproc-staging-europe-west1-587948061270
-       <ul>
-           <li>Lokalizacja: europe-west1</li>
-           <li>Cel: Staging danych dla Dataproc</li>
-           <li>
-               Zawartość:
-               <ul>
-                   <li>
-                       Foldery:
-                       <ul>
-                           <li>mapreduce-job-history/ – Historia zadań MapReduce</li>
-                           <li>google-cloud-dataproc-metainfo/ – Metadane Dataproc</li>
-                           <li>tbd-cluster-* – Dane staging dla klastra</li>
-                       </ul>
-                   </li>
-               </ul>
-           </li>
-       </ul>
-   </li>
-   <li>
-       europe-west1-demo-lab-6c0e8263-bucket
-       <ul>
-           <li>Lokalizacja: europe-west1</li>
-           <li>Cel: Związany z Airflow w środowisku testowym</li>
-           <li>
-               Zawartość:
-               <ul>
-                   <li>
-                       Foldery:
-                       <ul>
-                           <li>dags/ – Pliki DAG dla Airflow</li>
-			   <li>data/ – Dane przetwarzane przez zadania</li>
-                           <li>logs/ – Logi zadań Airflow</li>
-			   <li>plugins/ - Pluginy</li>
-                       </ul>
-                   </li>
-               </ul>
-           </li>
-       </ul>
-   </li>
-   <li>
-       europe-west1-demo-lab-9f3509c0-bucket
-       <ul>
-           <li>Lokalizacja: europe-west1</li>
-           <li>Cel: Związany z monitorowaniem i zadaniami Airflow</li>
-           <li>
-               Zawartość:
-               <ul>
-                   <li>
-                       Foldery:
-                       <ul>
-                           <li>dags/ – Pliki DAG dla Airflow</li>
-			   <li>data/ – Dane przetwarzane przez zadania</li>
-                           <li>logs/ – Logi zadań Airflow</li>
-			   <li>plugins/ - Pluginy</li>    
-                       </ul>
-                   </li>
-               </ul>
-           </li>
-       </ul>
-   </li>
-   <li>
-       europe-west1-demo-lab-eb9c6219-bucket
-       <ul>
-           <li>Lokalizacja: europe-west1</li>
-           <li>Cel: Przechowywanie plików DAG i logów związanych z Airflow</li>
-           <li>
-               Zawartość:
-               <ul>
-                   <li>
-                       Foldery:
-                       <ul>
-                           <li>dags/ – Pliki DAG dla Airflow</li>
-			   <li>data/ – Dane przetwarzane przez zadania</li>
-                           <li>logs/ – Logi zadań Airflow</li>
-			   <li>plugins/ - Pluginy</li>  
-                       </ul>
-                   </li>
-               </ul>
-           </li>
-       </ul>
-   </li>
-   <li>
-       tbd-2024zz-305978-code
-       <ul>
-           <li>Lokalizacja: europe-west1</li>
-           <li>Cel: Przechowywanie kodu dla zadań Spark</li>
-           <li>
-               Zawartość:
-               <ul>
-                   <li>Plik: spark-job.py – Skrypt do uruchamiania zadań Spark</li>
-               </ul>
-           </li>
-       </ul>
-   </li>
-   <li>
-       tbd-2024zz-305978-conf
-       <ul>
-           <li>Lokalizacja: europe-west1</li>
-           <li>Cel: Przechowywanie plików konfiguracyjnych</li>
-           <li>
-               Zawartość:
-               <ul>
-                   <li>
-                       Folder: scripts/
-                       <ul>
-                           <li>Plik: notebook_post_startup_script.sh – Skrypt uruchamiany po starcie notebooka</li>
-                       </ul>
-                   </li>
-               </ul>
-           </li>
-       </ul>
-   </li>
-   <li>
-       tbd-2024zz-305978-data
-       <ul>
-           <li>Lokalizacja: europe-west1</li>
-           <li>Cel: Przechowywanie danych wejściowych i wyjściowych</li>
-           <li>Zawartość: Brak plików w tej chwili</li>
-       </ul>
-   </li>
-   <li>
-       tbd-2024zz-305978-state
-       <ul>
-           <li>Lokalizacja: europe-west1</li>
-           <li>Cel: Przechowywanie stanu infrastruktury (np. Terraform state)</li>
-           <li>
-               Zawartość:
-               <ul>
-                   <li>
-                       Folder: cicd/
-                       <ul>
-                           <li>Plik: default.tfstate – Plik stanu Terraform</li>
-                       </ul>
-                   </li>
-               </ul>
-           </li>
-       </ul>
-   </li>
-</ul>
-
-<p>Lista instancji VM</p>
-<ul>
-   <li>
-       tbd-cluster-m
-       <ul>
-           <li>Rola: Master node w klastrze Dataproc</li>
-           <li>Lokalizacja: europe-west1-d</li>
-           <li>Internal IP: 10.10.10.3</li>
-           <li>Typ maszyny: e2-standard-2</li>
-           <li>
-               Konfiguracja:
-               <ul>
-                   <li>CPU: Intel Broadwell</li>
-                   <li>Pamięć: Standard dla e2-standard-2</li>
-               </ul>
-           </li>
-           <li>Opis: Zarządza zadaniami w w klastrze Dataproc. Koordynuje działania workerów.</li>
-       </ul>
-   </li>
-   <li>
-       tbd-cluster-w-0
-       <ul>
-           <li>Rola: Worker node 0 w klastrze Dataproc</li>
-           <li>Lokalizacja: europe-west1-d</li>
-           <li>Internal IP: 10.10.10.2</li>
-           <li>Typ maszyny: e2-standard-2</li>
-           <li>
-               Konfiguracja:
-               <ul>
-                   <li>CPU: Intel Broadwell</li>
-               </ul>
-           </li>
-           <li>Opis: Wykonuje zadania zlecone przez Master Node w ramach klastrów Dataproc.</li>
-       </ul>
-   </li>
-   <li>
-       tbd-cluster-w-1
-       <ul>
-           <li>Rola: Worker node 1 w klastrze Dataproc</li>
-           <li>Lokalizacja: europe-west1-d</li>
-           <li>Internal IP: 10.10.10.4</li>
-           <li>Typ maszyny: e2-standard-2</li>
-           <li>
-               Konfiguracja:
-               <ul>
-                   <li>CPU: Intel Broadwell</li>
-               </ul>
-           </li>
-           <li>Opis: Wykonuje zadania zlecone przez Master Node w ramach klastrów Dataproc.</li>
-       </ul>
-   </li>
-   <li>
-       tbd-2024zz-305978-notebook
-       <ul>
-           <li>Rola: Vertex AI Workbench Notebook Instance</li>
-           <li>Lokalizacja: europe-west1-b</li>
-           <li>Internal IP: 10.10.10.5</li>
-           <li>Typ maszyny: e2-standard-2</li>
-           <li>
-               Konfiguracja:
-               <ul>
-                   <li>CPU: Intel Broadwell</li>
-               </ul>
-           </li>
-           <li>Użycie: Środowisko do uruchamiania kodu Spark </li>
-       </ul>
-   </li>
-</ul>
-
-<p>Apache Spark</p>
-<span>Do poprawnego działania Apache Spark w środowisku Vertex AI Workbench wykorzystuje porty:</span>
-<ul>
-   <li>
-       30000
-       <ul>
-           <li>Port używany przez Spark Driver do komunikacji z Executorami</li>
-       </ul>
-   </li>
-   <li>
-       30001
-       <ul>
-           <li>Port używany przez Spark Block Manager do przesyłania danych pomiędzy Executorami i Driverem</li>
-       </ul>
-   </li>
-   <li>
-       8088
-       <ul>
-           <li>Port YARN ResourceManager Web UI, pozwala na monitorowanie stanu klastrów i zadań</li>
-       </ul>
-   </li>
-   <li>
-       8030-8033
-       <ul>
-           <li>Porty YARN ResourceManager, zarządzające zasobami w klastrze</li>
-       </ul>
-   </li>
-   <li>
-       18080
-       <ul>
-           <li>Port Spark History Server, służący do przeglądania logów i wyników zakończonych aplikacji Spark</li>
-       </ul>
-   </li>
-   <li>
-       10200
-       <ul>
-           <li>Port Application History Server YARN, przechowuje historię zakończonych aplikacji</li>
-       </ul>
-   </li>
-</ul>
     ***place your diagram here***
 
 10. Create a new PR and add costs by entering the expected consumption into Infracost
@@ -402,7 +216,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
 11. Create a BigQuery dataset and an external table using SQL
     
-sql
+```sql
 CREATE OR REPLACE EXTERNAL TABLE `tbd-2024zz-305978.TBD_step_11.decimal_table`
 OPTIONS (
     format = 'ORC',
@@ -412,6 +226,7 @@ OPTIONS (
 SELECT _col0 AS original_value, ABS(_col0) AS absolute_value
 FROM `tbd-2024zz-305978.TBD_step_11.decimal_table`
 LIMIT 10;
+```
 
 ![img.pnng](shared-files/Step-11-sql.png)
 
