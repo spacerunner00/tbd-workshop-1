@@ -4,6 +4,7 @@
 
 1. Authors:
 
+<ul><h4>Autorzy:</h4></ul>
 <li>Aleksandra Gryzik</li>
 <li>Gabriel Skowron-Rodriguez</li>
 <li>Jakub Rozkosz</li>
@@ -32,9 +33,35 @@
 
 9. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-    ***describe one selected module and put the output of terraform graph for this module here***
+![img.pnng](shared-files/module-dataproc.png)
+
+
+<h3>module.dataproc</h3>
+<ul>
+   <li>Lokalizacja *./modules/dataproc/*</li>
+   <li>Moduł *module.data* to moduł terraform odpowiedzialny za stworzenie klastra Dataproc w Google Cloud.</li>
+<li>
+   Do jego zasobów należą: 
+   <ul>
+      <li> **google_project_service.dataproc** - Odpowiada za włączenie usługi API Dataproc w projekcie. Jest to kluczowy krok przed utworzeniem klastra, ponieważ bez aktywnego API Dataproc utworzenie klastra Dataproc nie byłoby możliwe. </li>
+      <li>
+         **google_dataproc_cluster.tbd-dataproc-cluster** - Odpowiada za konfigurację i utworzenie klastra Dataproc. W tym zasobie definiowane są szczegóły konfiguracji klastra, takie jak: 
+         <ul>
+            <li>liczba i rodzaj węzłów (master i worker nodes)</li>
+            <li>rodzaj maszyn wirtualnych i ich zasoby (typ maszyn, dyski, sieć)</li>
+            <li>oprogramowanie i inicjalizacja, w tym wersja obrazu oraz skrypty inicjalizacyjne</li>
+         </ul>
+      </li>
+   </ul>
+</li>
+</ul>
+
+
+
+
+   ***describe one selected module and put the output of terraform graph for this module here***
    
-10. Reach YARN UI
+11. Reach YARN UI
 
 gcloud compute ssh tbd-cluster-m \
   --project=tbd-2024zz-305978 \
