@@ -53,8 +53,8 @@
    
 8. Reach YARN UI
 
-![img.pnng](shared-files/Step-6-yarnui-1.png)
-![img.pnng](shared-files/Step-6-yarnui-2.png)
+![img.pnng](shared-files/Step-8-yarnui-1.png)
+![img.pnng](shared-files/Step-8-yarnui-2.png)
 
 <p>Polecenie użyte do ustawienia tunela:</p>
 ```bash
