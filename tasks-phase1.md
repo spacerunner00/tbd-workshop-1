@@ -57,14 +57,12 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 ![img.pnng](shared-files/Step-8-yarnui-2.png)
 
 
-
 <p>Polecenie użyte do ustawienia tunela:</p>
-`gcloud compute ssh tbd-cluster-m \
+<p>gcloud compute ssh tbd-cluster-m \
   --project=tbd-2024zz-305978 \
   --zone=europe-west1-d \
   --tunnel-through-iap \
-  -- -L 8088:localhost:8088`
-
+  -- -L 8088:localhost:8088</p>
 
    
 11. Draw an architecture diagram (e.g. in draw.io) that includes:
