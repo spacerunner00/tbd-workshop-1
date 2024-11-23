@@ -325,8 +325,12 @@ gcloud compute ssh tbd-cluster-m \
    </li>
 </ul>
 
+<p>Apache Spark</p>
+<span>Do poprawnego działania Apache Spark w środowisku Vertex AI Workbench wykorzystuje porty:</span>
 
-  
+  <ul>
+	
+  </ul>
     ***place your diagram here***
 
 12. Create a new PR and add costs by entering the expected consumption into Infracost
