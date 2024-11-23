@@ -25,11 +25,11 @@ Link to forked repo: https://github.com/spacerunner00/tbd-workshop-1.git
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
-![img.pnng](shared-files/Step-6-new-branch-pr.png)
+![img.png](shared-files/Step-6-new-branch-pr.png)
 
 7. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-![img.pnng](shared-files/module-dataproc.png)
+![img.png](shared-files/module-dataproc.png)
 
 ### module.dataproc
 
@@ -47,8 +47,8 @@ Do jego zasobów należą:
 
 8. Reach YARN UI
 
-![img.pnng](shared-files/Step-8-yarnui-1.png)
-![img.pnng](shared-files/Step-8-yarnui-2.png)
+![img.png](shared-files/Step-8-yarnui-1.png)
+![img.png](shared-files/Step-8-yarnui-2.png)
 
 **Polecenie użyte do ustawienia tunelu:**
 
@@ -68,7 +68,7 @@ gcloud compute ssh tbd-cluster-m \
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
   
 ### Diagram
-![img.pnng](shared-files/tbd-phase-1-vpc-diagram.png.png)
+![img.png](shared-files/tbd-phase-1-vpc-diagram.png.png)
 
 ### VPC Network
 - **Nazwa VPC:** main-vpc
@@ -232,7 +232,7 @@ usage:
     monthly_data_processed_gb: 1000
 ```
 
-   ![img.pnng](shared-files/Step-10-infracost.png)
+   ![img.png](shared-files/Step-10-infracost.png)
 
 
 11. Create a BigQuery dataset and an external table using SQL
@@ -249,16 +249,16 @@ FROM `tbd-2024zz-305978.TBD_step_11.decimal_table`
 LIMIT 10;
 ```
 
-![img.pnng](shared-files/Step-11-sql.png)
+![img.png](shared-files/Step-11-sql.png)
 
    
 ***why does ORC not require a table schema?***
 ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w plik typu ORC jako część jego metadanych. BigQuery wykorzystuje te informacje do automatycznego rozpoznawania struktury danych, co eliminuje potrzebę ręcznej konfiguracji schematu podczas tworzenia i integracji z tabelą zewnętrzną.
   
 12. Start an interactive session from Vertex AI workbench:
-![img.pnng](shared-files/Step-12-pyspark-1.png)
-![img.pnng](shared-files/Step-12-pyspark-2.png)
-![img.pnng](shared-files/Step-12-pyspark-3.png)
+![img.png](shared-files/Step-12-pyspark-1.png)
+![img.png](shared-files/Step-12-pyspark-2.png)
+![img.png](shared-files/Step-12-pyspark-3.png)
    
 13. Find and correct the error in spark-job.py
 
