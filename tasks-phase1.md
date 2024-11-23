@@ -231,9 +231,8 @@ LIMIT 10;
 ![img.pnng](shared-files/Step-11-sql.png)
 
    
-    ***why does ORC not require a table schema?***
-
-<p>ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w plik typu ORC jako część jego metadanych. BigQuery wykorzystuje te informacje do automatycznego rozpoznawania struktury danych, co eliminuje potrzebę ręcznej konfiguracji schematu podczas tworzenia i integracji z tabelą zewnętrzną.</p>
+***why does ORC not require a table schema?***
+ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w plik typu ORC jako część jego metadanych. BigQuery wykorzystuje te informacje do automatycznego rozpoznawania struktury danych, co eliminuje potrzebę ręcznej konfiguracji schematu podczas tworzenia i integracji z tabelą zewnętrzną.
   
 13. Start an interactive session from Vertex AI workbench:
 
