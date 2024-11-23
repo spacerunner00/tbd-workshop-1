@@ -49,47 +49,46 @@ gcloud compute ssh tbd-cluster-m \
 
 <p>VPC Network</p>
 <ul>
-    <li>Nazwa VPC: main-vpc</li>
-    <li>Liczba podsieci: 2</li>
-    <li>Podsieć 1: composer-subnet-01</li>
-    <li>Gateway: 10.11.0.1</li>
-    <li>
-        <ul>
-            <li>Region: europe-west1</li>
-            <li>Primary IPv4 range: 10.11.0.0/16</li>
-        </ul>
-    </li>
-    <li>Podsieć 3: subnet-01</li>
-    <li>Gateway: 10.11.0.1</li>
-    <li>
-        <ul>
-            <li>Region: europe-west1</li>
-            <li>Primary IPv4 range: 10.10.10.0/24</li>
-        </ul>
-    </li>
+   <li>Nazwa VPC: main-vpc</li>
+   <li>Liczba podsieci: 2</li>
+   <li>
+       Podsieć 1: composer-subnet-01
+       <ul>
+           <li>Gateway: 10.11.0.1</li>
+           <li>Region: europe-west1</li>
+           <li>Primary IPv4 range: 10.11.0.0/16</li>
+       </ul>
+   </li>
+   <li>
+       Podsieć 3: subnet-01
+       <ul>
+           <li>Gateway: 10.11.0.1</li>
+           <li>Region: europe-west1</li>
+           <li>Primary IPv4 range: 10.10.10.0/24</li>
+       </ul>
+   </li>
 </ul>
 
 <p>Service accounts</p>
 <ul>
-<li>
-	tbd-2024zz-305978-data@tbd-2024zz-305978.iam.gserviceaccount.com
-	<ul>
-		<p>Opis: Konto do operacji: logowania, monitorowania, zarządzania zasobami.</p>
-	</ul>
-</li>
-
-
- <li>
-	 tbd-2024zz-305978-lab@tbd-2024zz-305978.iam.gserviceaccount.com
-	 <ul>
-		<p>Opis: Konto do operacji: logowania, monitorowania, zarządzania zasobami.</p>
-	</ul>
- </li>
- <li>587948061270-compute@developer.gserviceaccount.com
- <ul>
-	 <li>opis: Konto używane przez maszyny wirutalne w Compute Engine.</li>
- </ul></li>
- 
+   <li>
+       tbd-2024zz-305978-data@tbd-2024zz-305978.iam.gserviceaccount.com
+       <ul>
+           <p>Opis: Konto do operacji: logowania, monitorowania, zarządzania zasobami.</p>
+       </ul>
+   </li>
+   <li>
+       tbd-2024zz-305978-lab@tbd-2024zz-305978.iam.gserviceaccount.com
+       <ul>
+           <p>Opis: Konto do operacji: logowania, monitorowania, zarządzania zasobami.</p>
+       </ul>
+   </li>
+   <li>
+       587948061270-compute@developer.gserviceaccount.com
+       <ul>
+           <li>Opis: Konto używane przez maszyny wirutalne w Compute Engine.</li>
+       </ul>
+   </li>
 </ul>
   
     ***place your diagram here***
