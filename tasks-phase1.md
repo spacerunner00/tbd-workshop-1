@@ -73,12 +73,23 @@ gcloud compute ssh tbd-cluster-m \
 <ul>
 <li>
 	tbd-2024zz-305978-data@tbd-2024zz-305978.iam.gserviceaccount.com
+	<ul>
+		<p>Opis: Konto do operacji: logowania, monitorowania, zarządzania zasobami.</p>
+	</ul>
 </li>
+
 
  <li>
 	 tbd-2024zz-305978-lab@tbd-2024zz-305978.iam.gserviceaccount.com
+	 <ul>
+		<p>Opis: Konto do operacji: logowania, monitorowania, zarządzania zasobami.</p>
+	</ul>
  </li>
- <li>587948061270-compute@developer.gserviceaccount.com</li>
+ <li>587948061270-compute@developer.gserviceaccount.com
+ <ul>
+	 <li>opis: Konto używane przez maszyny wirutalne w Compute Engine.</li>
+ </ul></li>
+ 
 </ul>
   
     ***place your diagram here***
