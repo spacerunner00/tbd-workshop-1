@@ -90,6 +90,167 @@ gcloud compute ssh tbd-cluster-m \
        </ul>
    </li>
 </ul>
+
+
+<p>Google Cloud Storage Buckets</p>
+<ul>
+   <li>
+       dataproc-temp-europe-west1-587948061270
+       <ul>
+           <li>Lokalizacja: europe-west1</li>
+           <li>Cel: Tymczasowe przechowywanie danych podczas operacji Dataproc</li>
+           <li>
+               Zawartość:
+               <ul>
+                   <li>
+                       Foldery:
+                       <ul>
+                           <li>mapreduce-job-history/ – Dane historii zadań MapReduce</li>
+                           <li>spark-job-history/ – Dane historii zadań Spark</li>
+                           <li>yarn-logs/ – Logi YARN</li>
+                       </ul>
+                   </li>
+               </ul>
+           </li>
+       </ul>
+   </li>
+   <li>
+       dataproc-staging-europe-west1-587948061270
+       <ul>
+           <li>Lokalizacja: europe-west1</li>
+           <li>Cel: Staging danych dla Dataproc</li>
+           <li>
+               Zawartość:
+               <ul>
+                   <li>
+                       Foldery:
+                       <ul>
+                           <li>mapreduce-job-history/ – Historia zadań MapReduce</li>
+                           <li>google-cloud-dataproc-metainfo/ – Metadane Dataproc</li>
+                           <li>tbd-cluster-* – Dane staging dla klastra</li>
+                       </ul>
+                   </li>
+               </ul>
+           </li>
+       </ul>
+   </li>
+   <li>
+       europe-west1-demo-lab-6c0e8263-bucket
+       <ul>
+           <li>Lokalizacja: europe-west1</li>
+           <li>Cel: Związany z Airflow w środowisku testowym</li>
+           <li>
+               Zawartość:
+               <ul>
+                   <li>
+                       Foldery:
+                       <ul>
+                           <li>dags/ – Pliki DAG dla Airflow</li>
+                           <li>logs/ – Logi zadań Airflow</li>
+                           <li>data/ – Dane przetwarzane przez zadania</li>
+                       </ul>
+                   </li>
+               </ul>
+           </li>
+       </ul>
+   </li>
+   <li>
+       europe-west1-demo-lab-9f3509c0-bucket
+       <ul>
+           <li>Lokalizacja: europe-west1</li>
+           <li>Cel: Związany z monitorowaniem i zadaniami Airflow</li>
+           <li>
+               Zawartość:
+               <ul>
+                   <li>
+                       Foldery:
+                       <ul>
+                           <li>dags/ – Pliki DAG</li>
+                           <li>logs/ – Logi Airflow</li>
+                           <li>data/ – Dane przetwarzane</li>
+                       </ul>
+                   </li>
+               </ul>
+           </li>
+       </ul>
+   </li>
+   <li>
+       europe-west1-demo-lab-eb9c6219-bucket
+       <ul>
+           <li>Lokalizacja: europe-west1</li>
+           <li>Cel: Przechowywanie plików DAG i logów związanych z Airflow</li>
+           <li>
+               Zawartość:
+               <ul>
+                   <li>
+                       Foldery:
+                       <ul>
+                           <li>dags/ – Plik airflow_monitoring.py</li>
+                           <li>logs/ – Logi Airflow</li>
+                       </ul>
+                   </li>
+               </ul>
+           </li>
+       </ul>
+   </li>
+   <li>
+       tbd-2024zz-305978-code
+       <ul>
+           <li>Lokalizacja: europe-west1</li>
+           <li>Cel: Przechowywanie kodu dla zadań Spark</li>
+           <li>
+               Zawartość:
+               <ul>
+                   <li>Plik: spark-job.py – Skrypt do uruchamiania zadań Spark</li>
+               </ul>
+           </li>
+       </ul>
+   </li>
+   <li>
+       tbd-2024zz-305978-conf
+       <ul>
+           <li>Lokalizacja: europe-west1</li>
+           <li>Cel: Przechowywanie plików konfiguracyjnych</li>
+           <li>
+               Zawartość:
+               <ul>
+                   <li>
+                       Folder: scripts/
+                       <ul>
+                           <li>Plik: notebook_post_startup_script.sh – Skrypt uruchamiany po starcie notebooka</li>
+                       </ul>
+                   </li>
+               </ul>
+           </li>
+       </ul>
+   </li>
+   <li>
+       tbd-2024zz-305978-data
+       <ul>
+           <li>Lokalizacja: europe-west1</li>
+           <li>Cel: Przechowywanie danych wejściowych i wyjściowych</li>
+           <li>Zawartość: Brak plików w tej chwili</li>
+       </ul>
+   </li>
+   <li>
+       tbd-2024zz-305978-state
+       <ul>
+           <li>Lokalizacja: europe-west1</li>
+           <li>Cel: Przechowywanie stanu infrastruktury (np. Terraform state)</li>
+           <li>
+               Zawartość:
+               <ul>
+                   <li>
+                       Folder: cicd/
+                       <ul>
+                           <li>Plik: default.tfstate – Plik stanu Terraform</li>
+                       </ul>
+                   </li>
+               </ul>
+           </li>
+       </ul>
+   </li>
+</ul>
   
     ***place your diagram here***
 
