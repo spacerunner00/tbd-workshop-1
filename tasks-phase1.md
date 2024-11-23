@@ -4,13 +4,13 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-<ul><h4>Autorzy:</h4></ul>
-<li>Aleksandra Gryzik</li>
-<li>Gabriel Skowron-Rodriguez</li>
-<li>Jakub Rozkosz</li>
+#### Autorzy:
+- Aleksandra Gryzik
+- Gabriel Skowron-Rodriguez
+- Jakub Rozkosz
    
-<p>Group nr: 13</p>
-<p>Link to forked repo: https://github.com/spacerunner00/tbd-workshop-1.git</p>
+Group nr: 13</p>
+Link to forked repo: https://github.com/spacerunner00/tbd-workshop-1.git
    
 3. Follow all steps in README.md.
 
@@ -392,7 +392,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 </ul>
     ***place your diagram here***
 
-12. Create a new PR and add costs by entering the expected consumption into Infracost
+10. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
@@ -402,20 +402,33 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
 11. Create a BigQuery dataset and an external table using SQL
     
-    ***place the code and output here***
+sql
+CREATE OR REPLACE EXTERNAL TABLE `tbd-2024zz-305978.TBD_step_11.decimal_table`
+OPTIONS (
+    format = 'ORC',
+    uris = ['gs://tbd-2024zz-305978-data/decimal.orc']
+);
+
+SELECT _col0 AS original_value, ABS(_col0) AS absolute_value
+FROM `tbd-2024zz-305978.TBD_step_11.decimal_table`
+LIMIT 10;
+
+![img.pnng](shared-files/Step-11-sql.png)
+
    
     ***why does ORC not require a table schema?***
 
+<p>ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w plik typu ORC jako część jego metadanych. BigQuery wykorzystuje te informacje do automatycznego rozpoznawania struktury danych, co eliminuje potrzebę ręcznej konfiguracji schematu podczas tworzenia i integracji z tabelą zewnętrzną.</p>
   
-12. Start an interactive session from Vertex AI workbench:
+13. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
    
-13. Find and correct the error in spark-job.py
+14. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-14. Additional tasks using Terraform:
+15. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
