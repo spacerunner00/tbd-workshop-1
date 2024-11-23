@@ -45,15 +45,16 @@ gcloud compute ssh tbd-cluster-m \
    
 <p>VPC Network</p>
 <ul>
-	<li>Nazwa VPC: main-vpc</li>
-	<li>Liczba podsieci: 2</li>
-	<li>Podsieć 1: composer-subnet-01</li>
-	<li>Gateway: 10.11.0.1</li>
-	<li><ul>
-
-  <li>Region: europe-west1</li>
-  <li>Primary IPv4 range: 10.11.0.0/16</li>
-	</ul></li>
+    <li>Nazwa VPC: main-vpc</li>
+    <li>Liczba podsieci: 2</li>
+    <li>Podsieć 1: composer-subnet-01</li>
+    <li>Gateway: 10.11.0.1</li>
+    <li>
+        <ul>
+            <li>Region: europe-west1</li>
+            <li>Primary IPv4 range: 10.11.0.0/16</li>
+        </ul>
+    </li>
 </ul>
 
 
