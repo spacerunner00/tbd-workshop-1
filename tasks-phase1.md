@@ -328,6 +328,7 @@ default     = 1
    description = "Number of preemptible worker nodes for Dataproc cluster"
  }
 ```
+![img.png](shared-files/Step-14-d-3.png)
 
 [modules/dataproc/main.tf](modules/dataproc/main.tf)
 
@@ -379,7 +380,7 @@ cluster_config {
   ...
  }
 ```
-![img.png](shared-files/Step-14-d-3.png)
+
 ![img.png](shared-files/Step-14-d-4.png)
 ![img.png](shared-files/Step-14-d-5.png)
 
