@@ -382,6 +382,8 @@ cluster_config {
  }
 ```
 
-Spark WebUI jest dostępny w Google Cloud: Dataproc > Clusters > tbd-cluster > Web INterfaces > Spark History Server
+Spark WebUI jest dostępny w Google Cloud: Dataproc > Clusters > tbd-cluster > Web Interfaces > Spark History Server
 ![img.png](shared-files/Step-14-d-4.png)
+
+Widok po kliknięciu "App ID" z listy:
 ![img.png](shared-files/Step-14-d-5.png)
