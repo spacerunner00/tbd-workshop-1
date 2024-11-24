@@ -89,11 +89,14 @@ gcloud compute ssh tbd-cluster-m \
 ### Service Accounts
 
 - **tbd-2024zz-305978-data@tbd-2024zz-305978.iam.gserviceaccount.com**
-  - Opis: Konto do operacji: logowania, monitorowania, zarządzania zasobami.
+  - Opis: Konto usługowe przypisane do przetwarzania danych w środowiskach takich jak Cloud Composer, Dataproc, czy BigQuery.
+  - Rola: Zarządza orkiestracją zadań związanych z danymi oraz koordynuje operacje między komponentami w projekcie.
 - **tbd-2024zz-305978-lab@tbd-2024zz-305978.iam.gserviceaccount.com**
-  - Opis: Konto do operacji: logowania, monitorowania, zarządzania zasobami.
+  - Opis: Konto przypisane do Terraform, odpowiedzialne za zarządzanie infrastrukturą Google Cloud.
+  - Rola: Pozwala na automatyczne wdrażanie, modyfikację i usuwanie zasobów w projekcie za pomocą Terraform.
 - **587948061270-compute@developer.gserviceaccount.com**
-  - Opis: Konto używane przez maszyny wirtualne w Compute Engine.
+  - Opis: Domyślne konto Compute Engine wykorzystywane przez wirtualne maszyny w Google Cloud.
+  - Rola: Umożliwia maszynom wirtualnym dostęp do innych usług w Google Cloud (np. Cloud Storage, BigQuery) poprzez generowanie tokenów uwierzytelniających.
 
 ### Google Cloud Storage Buckets
 
