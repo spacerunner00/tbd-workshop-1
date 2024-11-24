@@ -239,22 +239,27 @@ google_service_networking_connection.private_vpc_connection:
   monthly_data_processed_gb: 1000
 ```
 
-![img.png](shared-files/Step-10-infracost.png)
+![img.png](shared-files/Step-10-infracost-v2.png)
 
 11. Create a BigQuery dataset and an external table using SQL
 
 ```sql
-CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'US');
+CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'europe-west1');
 
 CREATE OR REPLACE EXTERNAL TABLE demo.shakespeare
-  OPTIONS (
-
+OPTIONS (
   format = 'ORC',
-  uris = ['gs://tbd-2024z-305978-data/data/shakespeare/*.orc']);
-
+  uris = ['gs://tbd-2024zz-305978-data/data/shakespeare/*.orc']
+);
 
 SELECT * FROM demo.shakespeare ORDER BY sum_word_count DESC LIMIT 5;
 ```
+ ![img.png](shared-files/Step-11-big-query-1.png)
+ ![img.png](shared-files/Step-11-big-query-2.png)
+ ![img.png](shared-files/Step-11-big-query-3.png)
+ ![img.png](shared-files/Step-11-big-query-4.png)
+ ![img.png](shared-files/Step-11-big-query-5.png)
+ ![img.png](shared-files/Step-11-big-query-6.png)
 
 **_why does ORC not require a table schema?_**
 ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w plik typu ORC jako część jego metadanych. BigQuery wykorzystuje te informacje do automatycznego rozpoznawania struktury danych, co eliminuje potrzebę ręcznej konfiguracji schematu podczas tworzenia i integracji z tabelą zewnętrzną.
