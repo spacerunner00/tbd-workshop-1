@@ -270,63 +270,61 @@ ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w 
 
 14. Additional tasks using Terraform:
 
-        1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
+    1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
-        Dodaliśmy wsparcie dla dowolnej liczby worker node'ów dla klastra Dataproc w następujący sposób (dowolny typ maszyny już był wspierany):
+    Dodaliśmy wsparcie dla dowolnej liczby worker node'ów dla klastra Dataproc w następujący sposób (dowolny typ maszyny już był wspierany):
 
     ['modules/dataproc/variables.tf'](modules/dataproc/variables.tf)
 
-```
-variable "worker_count" {
-  type        = number
-  default     = 2
-  description = "Number of worker nodes for Dataproc cluster"
-}
-```
-
-['modules/dataproc/main.tf'](modules/dataproc/main.tf)
-
-```
- worker_config {
-      num_instances = var.worker_count
-      machine_type  = var.machine_type
-      disk_config {
-        boot_disk_type    = "pd-standard"
-        boot_disk_size_gb = 100
-      }
-
+    ```
+    variable "worker_count" {
+      type        = number
+      default     = 2
+      description = "Number of worker nodes for Dataproc cluster"
     }
-```
+    ```
+
+    ['modules/dataproc/main.tf'](modules/dataproc/main.tf)
+
+    ```
+    worker_config {
+          num_instances = var.worker_count
+          machine_type  = var.machine_type
+          disk_config {
+            boot_disk_type    = "pd-standard"
+            boot_disk_size_gb = 100
+          }
+
+        }
+    ```
 
     2. Add support for preemptible/spot instances in a Dataproc cluster
 
-      Dodaliśmy wsparcie dla instancji preemptible dla klastra Dataproc:
+    Dodaliśmy wsparcie dla instancji preemptible dla klastra Dataproc:
 
-['modules/dataproc/variables.tf'](modules/dataproc/variables.tf)
+    ['modules/dataproc/variables.tf'](modules/dataproc/variables.tf)
 
-```
-variable "preeemptible_worker_count" {
-  type        = number
-  default     = 1
-  description = "Number of preemptible worker nodes for Dataproc cluster"
-}
-```
-
-['modules/dataproc/main.tf'](modules/dataproc/main.tf)
-
-```
-  ...
-  preemptible_worker_config {
-      num_instances = var.preeemptible_worker_count
-      disk_config {
-        boot_disk_type    = "pd-standard"
-        boot_disk_size_gb = 100
-      }
-
-      preemptibility = "SPOT"
+    ```
+    variable "preeemptible_worker_count" {
+      type        = number
+      default     = 1
+      description = "Number of preemptible worker nodes for Dataproc cluster"
     }
-  ...
-```
+    ```
+
+    ['modules/dataproc/main.tf'](modules/dataproc/main.tf)
+
+    ```
+      preemptible_worker_config {
+          num_instances = var.preeemptible_worker_count
+          disk_config {
+            boot_disk_type    = "pd-standard"
+            boot_disk_size_gb = 100
+          }
+
+          preemptibility = "SPOT"
+        }
+    ```
 
     3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
 
