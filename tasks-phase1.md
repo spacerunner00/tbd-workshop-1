@@ -77,7 +77,7 @@ gcloud compute ssh tbd-cluster-m \
     - Gateway: 10.11.0.1
     - Region: europe-west1
     - Primary IPv4 range: 10.11.0.0/16
-  - **Podsieć 3:** subnet-01
+  - **Podsieć 2:** subnet-01
     - Gateway: 10.11.0.1
     - Region: europe-west1
     - Primary IPv4 range: 10.10.10.0/24
