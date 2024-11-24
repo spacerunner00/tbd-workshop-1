@@ -363,6 +363,9 @@ resource "google_notebooks_instance" "tbd_notebook" {
  ...
  }
 ```
+![img.png](shared-files/Step-14-c-1.png)
+
+
 
 4.  (Optional) Get access to Apache Spark WebUI
 
@@ -376,3 +379,7 @@ cluster_config {
   ...
  }
 ```
+![img.png](shared-files/Step-14-d-3.png)
+![img.png](shared-files/Step-14-d-4.png)
+![img.png](shared-files/Step-14-d-5.png)
+
