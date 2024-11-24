@@ -372,8 +372,34 @@ default     = 1
 
 3.  Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
 
-**_place the link to the modified file and inserted terraform code_**
+Wyłaczyliśmy dostęp do sudo i włączyliśmy secure boot dla środowiska Jupyterlab
+
+[modules/vertex-ai-workbench/main.tf](modules/vertex-ai-workbench/main.tf)
+
+```
+resource "google_notebooks_instance" "tbd_notebook" {
+ ...
+  metadata = {
+    ...
+    notebook-disable-root = "true"
+  }
+  ...
+  shielded_instance_config {
+    enable_secure_boot = true
+  }
+ ...
+ }
+```
 
 4.  (Optional) Get access to Apache Spark WebUI
 
-**_place the link to the modified file and inserted terraform code_**
+[modules/dataproc/main.tf](modules/dataproc/main.tf)
+
+```
+cluster_config {
+  endpoint_config {
+      enable_http_port_access = "true"
+    }
+  ...
+ }
+```
