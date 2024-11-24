@@ -278,8 +278,9 @@ ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w 
 ![img.png](shared-files/Step-12-pyspark-3.png)
 
 # 13. Find and correct the error in spark-job.py
- ![img.png](shared-files/Step-11-big-query-2.png)
- ![img.png](shared-files/Step-11-big-query-3.png)
+
+![img.png](shared-files/Step-11-big-query-2.png)
+![img.png](shared-files/Step-11-big-query-3.png)
 
 W pliku `spark-job.py` była błędna nazwa bucketa, która została zmienona z:
 `DATA_BUCKET = "gs://tbd-2025z-9900-data/data/shakespeare/"`
@@ -287,14 +288,13 @@ na:
 `DATA_BUCKET = "gs://tbd-2024zz-305978-data/data/shakespeare/"`
 (jest to również widoczne na powyższych obrazkach)
 
-
 # 14. Additional tasks using Terraform:
 
 1.  Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
 Dodaliśmy wsparcie dla dowolnej liczby worker node'ów dla klastra Dataproc w następujący sposób (dowolny typ maszyny już był wspierany):
 
-    [modules/dataproc/variables.tf](modules/dataproc/variables.tf)
+[modules/dataproc/variables.tf](modules/dataproc/variables.tf)
 
     ```
     variable "worker_count" {
@@ -304,7 +304,7 @@ Dodaliśmy wsparcie dla dowolnej liczby worker node'ów dla klastra Dataproc w n
     }
     ```
 
-    [modules/dataproc/main.tf](modules/dataproc/main.tf)
+[modules/dataproc/main.tf](modules/dataproc/main.tf)
 
     ```
     worker_config {
@@ -320,7 +320,7 @@ Dodaliśmy wsparcie dla dowolnej liczby worker node'ów dla klastra Dataproc w n
 
     Oraz wsparcie dla dowolnej maszyny dla JupyterLab notebooka:
 
-    [modules/vertex-ai-workbench/variables.tf](modules/vertex-ai-workbench/variables.tf)
+[modules/vertex-ai-workbench/variables.tf](modules/vertex-ai-workbench/variables.tf)
 
     ```
     variable "machine_type" {
@@ -330,7 +330,7 @@ Dodaliśmy wsparcie dla dowolnej liczby worker node'ów dla klastra Dataproc w n
     }
     ```
 
-    [modules/vertex-ai-workbench/main.tf](modules/vertex-ai-workbench/main.tf)
+[modules/vertex-ai-workbench/main.tf](modules/vertex-ai-workbench/main.tf)
 
     ```
     resource "google_notebooks_instance" "tbd_notebook" {
@@ -344,7 +344,7 @@ Dodaliśmy wsparcie dla dowolnej liczby worker node'ów dla klastra Dataproc w n
 
 Dodaliśmy wsparcie dla instancji preemptible dla klastra Dataproc:
 
-    [modules/dataproc/variables.tf](modules/dataproc/variables.tf)
+[modules/dataproc/variables.tf](modules/dataproc/variables.tf)
 
 ```
 variable "preeemptible_worker_count" {
@@ -354,7 +354,7 @@ default     = 1
  }
 ```
 
-    [modules/dataproc/main.tf](modules/dataproc/main.tf)
+[modules/dataproc/main.tf](modules/dataproc/main.tf)
 
     ```
       preemptible_worker_config {
