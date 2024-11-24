@@ -275,7 +275,7 @@ ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w 
     Dodaliśmy wsparcie dla dowolnej liczby worker node'ów dla klastra Dataproc w następujący sposób (dowolny typ maszyny już był wspierany):
     ['modules/dataproc/variables.tf'](modules/dataproc/variables.tf)
 
-```json
+```
 variable "worker_count" {
   type        = number
   default     = 2
@@ -283,9 +283,9 @@ variable "worker_count" {
 }
 ```
 
-    ['modules/dataproc/variables.tf'](modules/dataproc/main.tf)
+['modules/dataproc/variables.tf'](modules/dataproc/main.tf)
 
-```json
+```
  worker_config {
       num_instances = var.worker_count
       machine_type  = var.machine_type
