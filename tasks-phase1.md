@@ -317,18 +317,17 @@ Dodaliśmy wsparcie dla dowolnej liczby worker node'ów dla klastra Dataproc w n
 
 2. Add support for preemptible/spot instances in a Dataproc cluster
 
-Dodaliśmy wsparcie dla instancji preemptible dla klastra Dataproc:
+Dodaliśmy wsparcie dla instancji preemptible w klastrze Dataproc:
 
 [modules/dataproc/variables.tf](modules/dataproc/variables.tf)
 
 ```
 variable "preeemptible_worker_count" {
- type        = number
-default     = 1
-   description = "Number of preemptible worker nodes for Dataproc cluster"
+  type        = number
+  default     = 1
+  description = "Number of preemptible worker nodes for Dataproc cluster"
  }
 ```
-![img.png](shared-files/Step-14-d-3.png)
 
 [modules/dataproc/main.tf](modules/dataproc/main.tf)
 
@@ -343,6 +342,9 @@ default     = 1
           preemptibility = "SPOT"
         }
     ```
+
+Widać że "preemptibility" jest już włączone:
+![img.png](shared-files/Step-14-d-3.png)
 
 3.  Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
 
@@ -364,9 +366,8 @@ resource "google_notebooks_instance" "tbd_notebook" {
  ...
  }
 ```
+
 ![img.png](shared-files/Step-14-c-1.png)
-
-
 
 4.  (Optional) Get access to Apache Spark WebUI
 
@@ -381,6 +382,6 @@ cluster_config {
  }
 ```
 
+Spark WebUI jest dostępny w Google Cloud: Dataproc > Clusters > tbd-cluster > Web INterfaces > Spark History Server
 ![img.png](shared-files/Step-14-d-4.png)
 ![img.png](shared-files/Step-14-d-5.png)
-
