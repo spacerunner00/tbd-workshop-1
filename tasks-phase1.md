@@ -256,7 +256,6 @@ CREATE OR REPLACE EXTERNAL TABLE demo.shakespeare
 SELECT * FROM demo.shakespeare ORDER BY sum_word_count DESC LIMIT 5;
 ```
 
-
 **_why does ORC not require a table schema?_**
 ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w plik typu ORC jako część jego metadanych. BigQuery wykorzystuje te informacje do automatycznego rozpoznawania struktury danych, co eliminuje potrzebę ręcznej konfiguracji schematu podczas tworzenia i integracji z tabelą zewnętrzną.
 
@@ -272,6 +271,31 @@ ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w 
 14. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
+
+    Dodaliśmy wsparcie dla dowolnej liczby worker node'ów dla klastra Dataproc w następujący sposób (dowolny typ maszyny już był wspierany):
+    ['modules/dataproc/variables.tf'](modules/dataproc/variables.tf)
+
+```json
+variable "worker_count" {
+  type        = number
+  default     = 2
+  description = "Number of worker nodes for Dataproc cluster"
+}
+```
+
+    ['modules/dataproc/variables.tf'](modules/dataproc/main.tf)
+
+```json
+ worker_config {
+      num_instances = var.worker_count
+      machine_type  = var.machine_type
+      disk_config {
+        boot_disk_type    = "pd-standard"
+        boot_disk_size_gb = 100
+      }
+
+    }
+```
 
     **_place the link to the modified file and inserted terraform code_**
 
