@@ -254,12 +254,13 @@ OPTIONS (
 
 SELECT * FROM demo.shakespeare ORDER BY sum_word_count DESC LIMIT 5;
 ```
- ![img.png](shared-files/Step-11-big-query-1.png)
- ![img.png](shared-files/Step-11-big-query-2.png)
- ![img.png](shared-files/Step-11-big-query-3.png)
- ![img.png](shared-files/Step-11-big-query-4.png)
- ![img.png](shared-files/Step-11-big-query-5.png)
- ![img.png](shared-files/Step-11-big-query-6.png)
+
+![img.png](shared-files/Step-11-big-query-1.png)
+![img.png](shared-files/Step-11-big-query-2.png)
+![img.png](shared-files/Step-11-big-query-3.png)
+![img.png](shared-files/Step-11-big-query-4.png)
+![img.png](shared-files/Step-11-big-query-5.png)
+![img.png](shared-files/Step-11-big-query-6.png)
 
 **_why does ORC not require a table schema?_**
 ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w plik typu ORC jako część jego metadanych. BigQuery wykorzystuje te informacje do automatycznego rozpoznawania struktury danych, co eliminuje potrzebę ręcznej konfiguracji schematu podczas tworzenia i integracji z tabelą zewnętrzną.
@@ -279,7 +280,7 @@ ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w 
 
     Dodaliśmy wsparcie dla dowolnej liczby worker node'ów dla klastra Dataproc w następujący sposób (dowolny typ maszyny już był wspierany):
 
-    ['modules/dataproc/variables.tf'](modules/dataproc/variables.tf)
+    [modules/dataproc/variables.tf](modules/dataproc/variables.tf)
 
     ```
     variable "worker_count" {
@@ -289,7 +290,7 @@ ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w 
     }
     ```
 
-    ['modules/dataproc/main.tf'](modules/dataproc/main.tf)
+    [modules/dataproc/main.tf](modules/dataproc/main.tf)
 
     ```
     worker_config {
@@ -303,11 +304,33 @@ ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w 
         }
     ```
 
+    Oraz wsparcie dla dowolnej maszyny dla JupyterLab notebooka:
+
+    [modules/vertex-ai-workbench/variables.tf](modules/vertex-ai-workbench/variables.tf)
+
+    ```
+    variable "machine_type" {
+      type        = string
+      default     = "e2-standard-2"
+      description = "Machine type to use for the JupyterLab instance"
+    }
+    ```
+
+    [modules/vertex-ai-workbench/main.tf](modules/vertex-ai-workbench/main.tf)
+
+    ```
+    resource "google_notebooks_instance" "tbd_notebook" {
+      ...
+      machine_type = var.machine_type
+      ...
+    }
+    ```
+
     2. Add support for preemptible/spot instances in a Dataproc cluster
 
     Dodaliśmy wsparcie dla instancji preemptible dla klastra Dataproc:
 
-    ['modules/dataproc/variables.tf'](modules/dataproc/variables.tf)
+    [modules/dataproc/variables.tf](modules/dataproc/variables.tf)
 
     ```
     variable "preeemptible_worker_count" {
