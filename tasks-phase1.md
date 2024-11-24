@@ -278,8 +278,15 @@ ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w 
 ![img.png](shared-files/Step-12-pyspark-3.png)
 
 # 13. Find and correct the error in spark-job.py
+ ![img.png](shared-files/Step-11-big-query-2.png)
+ ![img.png](shared-files/Step-11-big-query-3.png)
 
-    **_describe the cause and how to find the error_**
+W pliku `spark-job.py` była błędna nazwa bucketa, która została zmienona z:
+`DATA_BUCKET = "gs://tbd-2025z-9900-data/data/shakespeare/"`
+na:
+`DATA_BUCKET = "gs://tbd-2024zz-305978-data/data/shakespeare/"`
+(jest to również widoczne na powyższych obrazkach)
+
 
 # 14. Additional tasks using Terraform:
 
