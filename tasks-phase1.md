@@ -4,8 +4,6 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 # 1. Authors:
 
-#### Autorzy:
-
 - Aleksandra Gryzik
 - Gabriel Skowron-Rodriguez
 - Jakub Rozkosz
@@ -13,17 +11,17 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 Group nr: 13</p>
 Link to forked repo: https://github.com/spacerunner00/tbd-workshop-1.git
 
-3. Follow all steps in README.md.
+# 3. Follow all steps in README.md.
 
-4. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
+# 4. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
 
 ![img.png](doc/figures/discounts.png)
 
-5. From avaialble Github Actions select and run destroy on main branch.
+# 5. From avaialble Github Actions select and run destroy on main branch.
 
 ![img.png](shared-files/Step-5-destroy.png)
 
-6. Create new git branch and:
+# 6. Create new git branch and:
 
    1. Modify tasks-phase1.md file.
 
@@ -31,7 +29,7 @@ Link to forked repo: https://github.com/spacerunner00/tbd-workshop-1.git
 
 ![img.png](shared-files/Step-6-new-branch-pr.png)
 
-7. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
+# 7. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
 ![img.png](shared-files/module-dataproc.png)
 
@@ -50,7 +48,7 @@ Do jego zasobów należą:
   - rodzaj maszyn wirtualnych i ich zasoby (typ maszyn, dyski, sieć)
   - oprogramowanie i inicjalizacja, w tym wersja obrazu oraz skrypty inicjalizacyjne
 
-8. Reach YARN UI
+# 8. Reach YARN UI
 
 ![img.png](shared-files/Step-8-yarnui-1.png)
 ![img.png](shared-files/Step-8-yarnui-2.png)
@@ -65,7 +63,7 @@ gcloud compute ssh tbd-cluster-m \
   -- -L 8088:localhost:8088
 ```
 
-9. Draw an architecture diagram (e.g. in draw.io) that includes:
+# 9. Draw an architecture diagram (e.g. in draw.io) that includes:
    1. VPC topology with service assignment to subnets
    2. Description of the components of service accounts
    3. List of buckets for disposal
@@ -217,8 +215,8 @@ Do poprawnego działania Apache Spark w środowisku Vertex AI Workbench wykorzys
 - **10200**
   - Port Application History Server YARN, przechowuje historię zakończonych aplikacji
 
-10. Create a new PR and add costs by entering the expected consumption into Infracost
-    For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
+# 10. Create a new PR and add costs by entering the expected consumption into Infracost
+   For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
     create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml)
 
 ```yaml
@@ -244,7 +242,7 @@ google_service_networking_connection.private_vpc_connection:
 
 ![img.png](shared-files/Step-10-infracost-v2.png)
 
-11. Create a BigQuery dataset and an external table using SQL
+# 11. Create a BigQuery dataset and an external table using SQL
 
 ```sql
 CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'europe-west1');
@@ -267,25 +265,24 @@ SELECT * FROM demo.shakespeare ORDER BY sum_word_count DESC LIMIT 5;
 **_why does ORC not require a table schema?_**
 ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w plik typu ORC jako część jego metadanych. BigQuery wykorzystuje te informacje do automatycznego rozpoznawania struktury danych, co eliminuje potrzebę ręcznej konfiguracji schematu podczas tworzenia i integracji z tabelą zewnętrzną.
 
-12. Start an interactive session from Vertex AI workbench:
-    ![img.png](shared-files/Step-12-pyspark-1.png)
-    ![img.png](shared-files/Step-12-pyspark-2.png)
-    ![img.png](shared-files/Step-12-pyspark-3.png)
+# 12. Start an interactive session from Vertex AI workbench:
+  ![img.png](shared-files/Step-12-pyspark-1.png)
+  ![img.png](shared-files/Step-12-pyspark-2.png)
+  ![img.png](shared-files/Step-12-pyspark-3.png)
 
-13. Find and correct the error in spark-job.py
+# 13. Find and correct the error in spark-job.py
 
     **_describe the cause and how to find the error_**
 
-14. Additional tasks using Terraform:
+# 14. Additional tasks using Terraform:
+   1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
-    1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
+   Dodaliśmy wsparcie dla dowolnej liczby worker node'ów dla klastra Dataproc w następujący sposób (dowolny typ maszyny już był wspierany):
 
-    Dodaliśmy wsparcie dla dowolnej liczby worker node'ów dla klastra Dataproc w następujący sposób (dowolny typ maszyny już był wspierany):
+   ['modules/dataproc/variables.tf'](modules/dataproc/variables.tf)
 
-    ['modules/dataproc/variables.tf'](modules/dataproc/variables.tf)
-
-    ```
-    variable "worker_count" {
+   ```
+   variable "worker_count" {
       type        = number
       default     = 2
       description = "Number of worker nodes for Dataproc cluster"
@@ -304,23 +301,23 @@ ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w 
           }
 
         }
-    ```
+   ```
 
-    2. Add support for preemptible/spot instances in a Dataproc cluster
+   2. Add support for preemptible/spot instances in a Dataproc cluster
 
-    Dodaliśmy wsparcie dla instancji preemptible dla klastra Dataproc:
+   Dodaliśmy wsparcie dla instancji preemptible dla klastra Dataproc:
 
-    ['modules/dataproc/variables.tf'](modules/dataproc/variables.tf)
+   ['modules/dataproc/variables.tf'](modules/dataproc/variables.tf)
 
-    ```
-    variable "preeemptible_worker_count" {
-      type        = number
-      default     = 1
+   ```
+   variable "preeemptible_worker_count" {
+    type        = number
+   default     = 1
       description = "Number of preemptible worker nodes for Dataproc cluster"
     }
-    ```
+   ```
 
-    ['modules/dataproc/main.tf'](modules/dataproc/main.tf)
+   ['modules/dataproc/main.tf'](modules/dataproc/main.tf)
 
     ```
       preemptible_worker_config {
@@ -334,10 +331,10 @@ ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w 
         }
     ```
 
-    3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
+   3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
 
-    **_place the link to the modified file and inserted terraform code_**
+   **_place the link to the modified file and inserted terraform code_**
 
-    4. (Optional) Get access to Apache Spark WebUI
+   4. (Optional) Get access to Apache Spark WebUI
 
-    **_place the link to the modified file and inserted terraform code_**
+   **_place the link to the modified file and inserted terraform code_**
