@@ -1,30 +1,31 @@
 IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each work session. You can recreate infrastructure by creating new PR and merging it to master.
-  
+
 ![img.png](doc/figures/destroy.png)
 
 1. Authors:
 
 #### Autorzy:
+
 - Aleksandra Gryzik
 - Gabriel Skowron-Rodriguez
 - Jakub Rozkosz
-   
+
 Group nr: 13</p>
 Link to forked repo: https://github.com/spacerunner00/tbd-workshop-1.git
-   
+
 3. Follow all steps in README.md.
 
 4. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
 
-  ![img.png](doc/figures/discounts.png)
+![img.png](doc/figures/discounts.png)
 
 5. From avaialble Github Actions select and run destroy on main branch.
-   
 6. Create new git branch and:
-    1. Modify tasks-phase1.md file.
-    
-    2. Create PR from this branch to **YOUR** master and merge it to make new release. 
-    
+
+   1. Modify tasks-phase1.md file.
+
+   2. Create PR from this branch to **YOUR** master and merge it to make new release.
+
 ![img.png](shared-files/Step-6-new-branch-pr.png)
 
 7. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
@@ -36,14 +37,15 @@ Link to forked repo: https://github.com/spacerunner00/tbd-workshop-1.git
 - **Lokalizacja:** `./modules/dataproc/`
 - **Moduł `module.dataproc`** to moduł Terraform odpowiedzialny za stworzenie klastra Dataproc w Google Cloud.
 
-Do jego zasobów należą: 
-  - **google_project_service.dataproc**  
-    Odpowiada za włączenie usługi API Dataproc w projekcie. Jest to kluczowy krok przed utworzeniem klastra, ponieważ bez aktywnego API Dataproc utworzenie klastra Dataproc nie byłoby możliwe.
-  - **google_dataproc_cluster.tbd-dataproc-cluster**  
-    Odpowiada za konfigurację i utworzenie klastra Dataproc. W tym zasobie definiowane są szczegóły konfiguracji klastra, takie jak: 
-    - liczba i rodzaj węzłów (*master* i *worker nodes*)
-    - rodzaj maszyn wirtualnych i ich zasoby (typ maszyn, dyski, sieć)
-    - oprogramowanie i inicjalizacja, w tym wersja obrazu oraz skrypty inicjalizacyjne
+Do jego zasobów należą:
+
+- **google_project_service.dataproc**  
+  Odpowiada za włączenie usługi API Dataproc w projekcie. Jest to kluczowy krok przed utworzeniem klastra, ponieważ bez aktywnego API Dataproc utworzenie klastra Dataproc nie byłoby możliwe.
+- **google_dataproc_cluster.tbd-dataproc-cluster**  
+  Odpowiada za konfigurację i utworzenie klastra Dataproc. W tym zasobie definiowane są szczegóły konfiguracji klastra, takie jak:
+  - liczba i rodzaj węzłów (_master_ i _worker nodes_)
+  - rodzaj maszyn wirtualnych i ich zasoby (typ maszyn, dyski, sieć)
+  - oprogramowanie i inicjalizacja, w tym wersja obrazu oraz skrypty inicjalizacyjne
 
 8. Reach YARN UI
 
@@ -60,17 +62,18 @@ gcloud compute ssh tbd-cluster-m \
   -- -L 8088:localhost:8088
 ```
 
-   
 9. Draw an architecture diagram (e.g. in draw.io) that includes:
-    1. VPC topology with service assignment to subnets
-    2. Description of the components of service accounts
-    3. List of buckets for disposal
-    4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
-  
+   1. VPC topology with service assignment to subnets
+   2. Description of the components of service accounts
+   3. List of buckets for disposal
+   4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
+
 ### Diagram
+
 ![img.png](shared-files/tbd-phase-1-vpc-diagram.png)
 
 ### VPC Network
+
 - **Nazwa VPC:** main-vpc
 - **Liczba podsieci:** 2
   - **Podsieć 1:** composer-subnet-01
@@ -83,6 +86,7 @@ gcloud compute ssh tbd-cluster-m \
     - Primary IPv4 range: 10.10.10.0/24
 
 ### Service Accounts
+
 - **tbd-2024zz-305978-data@tbd-2024zz-305978.iam.gserviceaccount.com**
   - Opis: Konto do operacji: logowania, monitorowania, zarządzania zasobami.
 - **tbd-2024zz-305978-lab@tbd-2024zz-305978.iam.gserviceaccount.com**
@@ -91,6 +95,7 @@ gcloud compute ssh tbd-cluster-m \
   - Opis: Konto używane przez maszyny wirtualne w Compute Engine.
 
 ### Google Cloud Storage Buckets
+
 - **dataproc-temp-europe-west1-587948061270**
   - Lokalizacja: europe-west1
   - Cel: Tymczasowe przechowywanie danych podczas operacji Dataproc
@@ -106,7 +111,7 @@ gcloud compute ssh tbd-cluster-m \
     - Foldery:
       - mapreduce-job-history/ – Historia zadań MapReduce
       - google-cloud-dataproc-metainfo/ – Metadane Dataproc
-      - tbd-cluster-* – Dane staging dla klastra
+      - tbd-cluster-\* – Dane staging dla klastra
 - **europe-west1-demo-lab-6c0e8263-bucket**
   - Lokalizacja: europe-west1
   - Cel: Związany z Airflow w środowisku testowym
@@ -157,6 +162,7 @@ gcloud compute ssh tbd-cluster-m \
       - Plik: default.tfstate – Plik stanu Terraform
 
 ### Lista instancji VM
+
 - **tbd-cluster-m**
   - Rola: Master node w klastrze Dataproc
   - Lokalizacja: europe-west1-d
@@ -192,7 +198,9 @@ gcloud compute ssh tbd-cluster-m \
   - Użycie: Środowisko do uruchamiania kodu Spark
 
 ### Apache Spark
+
 Do poprawnego działania Apache Spark w środowisku Vertex AI Workbench wykorzystuje porty:
+
 - **30000**
   - Port używany przez Spark Driver do komunikacji z Executorami
 - **30001**
@@ -206,78 +214,76 @@ Do poprawnego działania Apache Spark w środowisku Vertex AI Workbench wykorzys
 - **10200**
   - Port Application History Server YARN, przechowuje historię zakończonych aplikacji
 
-
 10. Create a new PR and add costs by entering the expected consumption into Infracost
-For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
-create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
+    For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
+    create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml)
 
-  ```yaml
+```yaml
 usage:
-  google_artifact_registry.registry:
-    storage_gb: 100
+google_artifact_registry.registry:
+  storage_gb: 100
 
-  google_storage_bucket.tbd_code_bucket:
-    storage_gb: 50
-    monthly_class_a_operations: 5000
-    monthly_class_b_operations: 2000
-    monthly_egress_data_gb: 20
+google_storage_bucket.tbd_code_bucket:
+  storage_gb: 50
+  monthly_class_a_operations: 5000
+  monthly_class_b_operations: 2000
+  monthly_egress_data_gb: 20
 
-  google_storage_bucket.tbd_data_bucket:
-    storage_gb: 500
-    monthly_class_a_operations: 10000
-    monthly_class_b_operations: 5000
-    monthly_egress_data_gb: 200
+google_storage_bucket.tbd_data_bucket:
+  storage_gb: 500
+  monthly_class_a_operations: 10000
+  monthly_class_b_operations: 5000
+  monthly_egress_data_gb: 200
 
-  google_service_networking_connection.private_vpc_connection:
-    monthly_data_processed_gb: 1000
+google_service_networking_connection.private_vpc_connection:
+  monthly_data_processed_gb: 1000
 ```
 
-   ![img.png](shared-files/Step-10-infracost.png)
-
+![img.png](shared-files/Step-10-infracost.png)
 
 11. Create a BigQuery dataset and an external table using SQL
-    
-```sql
-CREATE OR REPLACE EXTERNAL TABLE `tbd-2024zz-305978.TBD_step_11.decimal_table`
-OPTIONS (
-    format = 'ORC',
-    uris = ['gs://tbd-2024zz-305978-data/decimal.orc']
-);
 
-SELECT _col0 AS original_value, ABS(_col0) AS absolute_value
-FROM `tbd-2024zz-305978.TBD_step_11.decimal_table`
-LIMIT 10;
+```sql
+CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'US');
+
+CREATE OR REPLACE EXTERNAL TABLE demo.shakespeare
+  OPTIONS (
+
+  format = 'ORC',
+  uris = ['gs://tbd-2024z-305978-data/data/shakespeare/*.orc']);
+
+
+SELECT * FROM demo.shakespeare ORDER BY sum_word_count DESC LIMIT 5;
 ```
 
 ![img.png](shared-files/Step-11-sql.png)
 
-   
-***why does ORC not require a table schema?***
+**_why does ORC not require a table schema?_**
 ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w plik typu ORC jako część jego metadanych. BigQuery wykorzystuje te informacje do automatycznego rozpoznawania struktury danych, co eliminuje potrzebę ręcznej konfiguracji schematu podczas tworzenia i integracji z tabelą zewnętrzną.
-  
+
 12. Start an interactive session from Vertex AI workbench:
-![img.png](shared-files/Step-12-pyspark-1.png)
-![img.png](shared-files/Step-12-pyspark-2.png)
-![img.png](shared-files/Step-12-pyspark-3.png)
-   
+    ![img.png](shared-files/Step-12-pyspark-1.png)
+    ![img.png](shared-files/Step-12-pyspark-2.png)
+    ![img.png](shared-files/Step-12-pyspark-3.png)
+
 13. Find and correct the error in spark-job.py
 
-    ***describe the cause and how to find the error***
+    **_describe the cause and how to find the error_**
 
 14. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
-    ***place the link to the modified file and inserted terraform code***
-    
+    **_place the link to the modified file and inserted terraform code_**
+
     3. Add support for preemptible/spot instances in a Dataproc cluster
 
-    ***place the link to the modified file and inserted terraform code***
-    
+    **_place the link to the modified file and inserted terraform code_**
+
     3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
-    
-    ***place the link to the modified file and inserted terraform code***
+
+    **_place the link to the modified file and inserted terraform code_**
 
     4. (Optional) Get access to Apache Spark WebUI
 
-    ***place the link to the modified file and inserted terraform code***
+    **_place the link to the modified file and inserted terraform code_**
