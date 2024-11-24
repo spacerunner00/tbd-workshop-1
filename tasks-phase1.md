@@ -256,7 +256,6 @@ CREATE OR REPLACE EXTERNAL TABLE demo.shakespeare
 SELECT * FROM demo.shakespeare ORDER BY sum_word_count DESC LIMIT 5;
 ```
 
-![img.png](shared-files/Step-11-sql.png)
 
 **_why does ORC not require a table schema?_**
 ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w plik typu ORC jako część jego metadanych. BigQuery wykorzystuje te informacje do automatycznego rozpoznawania struktury danych, co eliminuje potrzebę ręcznej konfiguracji schematu podczas tworzenia i integracji z tabelą zewnętrzną.
