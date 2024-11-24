@@ -262,8 +262,6 @@ SELECT * FROM demo.shakespeare ORDER BY sum_word_count DESC LIMIT 5;
 ```
 
 ![img.png](shared-files/Step-11-big-query-1.png)
-![img.png](shared-files/Step-11-big-query-2.png)
-![img.png](shared-files/Step-11-big-query-3.png)
 ![img.png](shared-files/Step-11-big-query-4.png)
 ![img.png](shared-files/Step-11-big-query-5.png)
 ![img.png](shared-files/Step-11-big-query-6.png)
@@ -283,9 +281,13 @@ ORC nie wymaga schematu tabeli w SQL, ponieważ schemat danych jest wbudowany w 
 ![img.png](shared-files/Step-11-big-query-3.png)
 
 W pliku `spark-job.py` była błędna nazwa bucketa, która została zmienona z:
+
 `DATA_BUCKET = "gs://tbd-2025z-9900-data/data/shakespeare/"`
+
 na:
+
 `DATA_BUCKET = "gs://tbd-2024zz-305978-data/data/shakespeare/"`
+
 (jest to również widoczne na powyższych obrazkach)
 
 # 14. Additional tasks using Terraform:
