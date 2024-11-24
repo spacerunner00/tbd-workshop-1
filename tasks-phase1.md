@@ -239,7 +239,7 @@ google_service_networking_connection.private_vpc_connection:
   monthly_data_processed_gb: 1000
 ```
 
-![img.png](shared-files/Step-10-infracost.png)
+![img.png](shared-files/Step-10-infracost-v2.png)
 
 11. Create a BigQuery dataset and an external table using SQL
 
