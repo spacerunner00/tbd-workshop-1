@@ -100,13 +100,15 @@ Kolejnym krokiem jest funkcja _load_csv_, która odpowiedzialna jest za załadow
 
 Funkcja _save_df_ sprawdza, czy zmienna show jest ustawiona na True. Jeśli tak, dane w DataFrame są po prostu wyświetlane na ekranie za pomocą df.show(). Jeśli show jest ustawione na False, dane są zapisywane do systemu w formacie parquet, a dodatkowo tworzona jest tabela o nazwie określonej przez table_name. Tabela jest zapisywana w trybie nadpisywania, co oznacza, że jeżeli tabela o tej samej nazwie już istnieje, zostanie zastąpiona.
 
-_TU MOŻE JAKIŚ SCREEN Z GOOGLE CLOUD STORAGE, ŻE TE DANE ZOSTAŁY WRZUCONE, POWSTAŁY JAKIEŚ TABELE CZY COŚ _
+_TU WRZUCIĆ BŁĄD, KTÓRY NAM WYWALIŁO_
 
 9. Using SparkSQL answer: how many table were created in each layer?
 
    ***SparkSQL command and output***
+   
+_TU JAKIŚ SCREEN Z GOOGLE CLOUD STORAGE, ŻE TE DANE ZOSTAŁY WRZUCONE, POWSTAŁY JAKIEŚ TABELE CZY COŚ_
 
-10. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. ***Add new tests to your repository.***
+11. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. ***Add new tests to your repository.***
 
    ***Code and description of your tests***
 
