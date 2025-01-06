@@ -88,6 +88,7 @@ W folderach _Batch1, Batch2_ oraz _Batch3_ znajdują się dane dotyczą różnyc
 Do każdej dziedziny danych wygenerowane zostały dwa pliki - jeden w formacie csv, drugi w txt (przykładowo _TradeHistory_audit.csv_ oraz _TradeHistory.txt_). Plik CSV zawiera podsumowanie i agregację danych, przedstawiając różne atrybuty związane z daną dziedziną. Znajdują się tam takie informacje jak liczba rekordów, operacji czy zdarzeń w określonym okresie czasu. Może zawierać również dane o stanie różnych elementów, takich jak liczba utworzonych kont, zamkniętych transakcji, zaktualizowanych informacji, itp. 
 Plik TXT zawiera już szczegółowe dane o każdym rejestrowanym zdarzeniu, często w formie zapisów transakcji lub innych jednostkowych zdarzeń. Zawiera informacje takie jak daty, wartości operacji, identyfikatory, a także inne szczegóły związane z każdym zdarzeniem. W przeciwieństwie do pliku CSV, plik tekstowy może być używany do bardziej zaawansowanej analizy, np. w przypadku potrzeby prześledzenia poszczególnych operacji w danej dziedzinie.
 
+Podsumowanie liczby rekordów:
 ![image](https://github.com/user-attachments/assets/8b5b506c-4e3e-46c4-877e-e59a867af7bb)
 
 Łączny rozmiar danych: ![image](https://github.com/user-attachments/assets/74942a60-da41-4da9-81f7-285e56d62a76)
