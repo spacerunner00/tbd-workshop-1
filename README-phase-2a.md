@@ -107,6 +107,7 @@ _TU WRZUCIĆ BŁĄD, KTÓRY NAM WYWALIŁO_
    ***SparkSQL command and output***
    
 _TU JAKIŚ SCREEN Z GOOGLE CLOUD STORAGE, ŻE TE DANE ZOSTAŁY WRZUCONE, POWSTAŁY JAKIEŚ TABELE CZY COŚ_
+![image](https://github.com/user-attachments/assets/032d2f19-d49d-46a1-b2e0-19ed061043cd)
 
 11. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. ***Add new tests to your repository.***
 
