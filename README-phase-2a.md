@@ -92,7 +92,7 @@ _TU WKLEIĆ SCREENA Z WYGNEROWANEGO RAPORTU DANYCH_
 
 Łączny rozmiar danych: X GB.
 
-9. Analyze tpcdi.py. What happened in the loading stage?
+8. Analyze tpcdi.py. What happened in the loading stage?
 
 W kodzie tpcdi.py, który uruchamiany był w loading stage, zdefiniowana jest funkcja _upload_files_, która przesyła pliki do Google Cloud Storage lub innej lokalizacji wskazanej przez stage_path. Funkcja ta przeszukuje katalog output_directory w poszukiwaniu plików pasujących do wzorca, a następnie w zależności od typu pliku ustawia odpowiedni delimiter (np. przecinek dla CSV). Następnie pliki są przesyłane do chmury, a ich nazwa jest używana jako nazwa bloba w GCS. Jest ona wywoływana przez funkcję _load_csv_.
 
@@ -102,11 +102,11 @@ Funkcja _save_df_ sprawdza, czy zmienna show jest ustawiona na True. Jeśli tak,
 
 _TU MOŻE JAKIŚ SCREEN Z GOOGLE CLOUD STORAGE, ŻE TE DANE ZOSTAŁY WRZUCONE, POWSTAŁY JAKIEŚ TABELE CZY COŚ _
 
-10. Using SparkSQL answer: how many table were created in each layer?
+9. Using SparkSQL answer: how many table were created in each layer?
 
    ***SparkSQL command and output***
 
-11. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. ***Add new tests to your repository.***
+10. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. ***Add new tests to your repository.***
 
    ***Code and description of your tests***
 
