@@ -88,13 +88,19 @@ W folderach _Batch1, Batch2_ oraz _Batch3_ znajdują się dane dotyczą różnyc
 Do każdej dziedziny danych wygenerowane zostały dwa pliki - jeden w formacie csv, drugi w txt (przykładowo _TradeHistory_audit.csv_ oraz _TradeHistory.txt_). Plik CSV zawiera podsumowanie i agregację danych, przedstawiając różne atrybuty związane z daną dziedziną. Znajdują się tam takie informacje jak liczba rekordów, operacji czy zdarzeń w określonym okresie czasu. Może zawierać również dane o stanie różnych elementów, takich jak liczba utworzonych kont, zamkniętych transakcji, zaktualizowanych informacji, itp. 
 Plik TXT zawiera już szczegółowe dane o każdym rejestrowanym zdarzeniu, często w formie zapisów transakcji lub innych jednostkowych zdarzeń. Zawiera informacje takie jak daty, wartości operacji, identyfikatory, a także inne szczegóły związane z każdym zdarzeniem. W przeciwieństwie do pliku CSV, plik tekstowy może być używany do bardziej zaawansowanej analizy, np. w przypadku potrzeby prześledzenia poszczególnych operacji w danej dziedzinie.
 
-_tu wkleić screena z wygenerowanego raportu danych_
+_TU WKLEIĆ SCREENA Z WYGNEROWANEGO RAPORTU DANYCH_
 
 Łączny rozmiar danych: X GB.
 
 9. Analyze tpcdi.py. What happened in the loading stage?
 
-   ***Your answer***
+W kodzie tpcdi.py, który uruchamiany był w loading stage, zdefiniowana jest funkcja _upload_files_, która przesyła pliki do Google Cloud Storage lub innej lokalizacji wskazanej przez stage_path. Funkcja ta przeszukuje katalog output_directory w poszukiwaniu plików pasujących do wzorca, a następnie w zależności od typu pliku ustawia odpowiedni delimiter (np. przecinek dla CSV). Następnie pliki są przesyłane do chmury, a ich nazwa jest używana jako nazwa bloba w GCS. Jest ona wywoływana przez funkcję _load_csv_.
+
+Kolejnym krokiem jest funkcja _load_csv_, która odpowiedzialna jest za załadowanie plików CSV z GCS do DataFrame w Spark. Na początku ustalana jest ścieżka do wgranego pliku, a potem wywoływana jest funkcja _upload_files_, aby upewnić się, że pliki są w odpowiednim miejscu. Następnie dane są wczytywane przy użyciu Spark, z uwzględnieniem podanego schematu, który opisuje strukturę danych w pliku. Po załadowaniu danych, wynikowy DataFrame jest przekazywany do funkcji _save_df_.
+
+Funkcja _save_df_ sprawdza, czy zmienna show jest ustawiona na True. Jeśli tak, dane w DataFrame są po prostu wyświetlane na ekranie za pomocą df.show(). Jeśli show jest ustawione na False, dane są zapisywane do systemu w formacie parquet, a dodatkowo tworzona jest tabela o nazwie określonej przez table_name. Tabela jest zapisywana w trybie nadpisywania, co oznacza, że jeżeli tabela o tej samej nazwie już istnieje, zostanie zastąpiona.
+
+_TU MOŻE JAKIŚ SCREEN Z GOOGLE CLOUD STORAGE, ŻE TE DANE ZOSTAŁY WRZUCONE, POWSTAŁY JAKIEŚ TABELE CZY COŚ _
 
 10. Using SparkSQL answer: how many table were created in each layer?
 
