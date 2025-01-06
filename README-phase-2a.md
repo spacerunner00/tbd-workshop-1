@@ -88,9 +88,9 @@ W folderach _Batch1, Batch2_ oraz _Batch3_ znajdują się dane dotyczą różnyc
 Do każdej dziedziny danych wygenerowane zostały dwa pliki - jeden w formacie csv, drugi w txt (przykładowo _TradeHistory_audit.csv_ oraz _TradeHistory.txt_). Plik CSV zawiera podsumowanie i agregację danych, przedstawiając różne atrybuty związane z daną dziedziną. Znajdują się tam takie informacje jak liczba rekordów, operacji czy zdarzeń w określonym okresie czasu. Może zawierać również dane o stanie różnych elementów, takich jak liczba utworzonych kont, zamkniętych transakcji, zaktualizowanych informacji, itp. 
 Plik TXT zawiera już szczegółowe dane o każdym rejestrowanym zdarzeniu, często w formie zapisów transakcji lub innych jednostkowych zdarzeń. Zawiera informacje takie jak daty, wartości operacji, identyfikatory, a także inne szczegóły związane z każdym zdarzeniem. W przeciwieństwie do pliku CSV, plik tekstowy może być używany do bardziej zaawansowanej analizy, np. w przypadku potrzeby prześledzenia poszczególnych operacji w danej dziedzinie.
 
-_TU WKLEIĆ SCREENA Z WYGNEROWANEGO RAPORTU DANYCH_
+![image](https://github.com/user-attachments/assets/8b5b506c-4e3e-46c4-877e-e59a867af7bb)
 
-Łączny rozmiar danych: X GB.
+Łączny rozmiar danych: ![image](https://github.com/user-attachments/assets/74942a60-da41-4da9-81f7-285e56d62a76)
 
 8. Analyze tpcdi.py. What happened in the loading stage?
 
@@ -100,14 +100,15 @@ Kolejnym krokiem jest funkcja _load_csv_, która odpowiedzialna jest za załadow
 
 Funkcja _save_df_ sprawdza, czy zmienna show jest ustawiona na True. Jeśli tak, dane w DataFrame są po prostu wyświetlane na ekranie za pomocą df.show(). Jeśli show jest ustawione na False, dane są zapisywane do systemu w formacie parquet, a dodatkowo tworzona jest tabela o nazwie określonej przez table_name. Tabela jest zapisywana w trybie nadpisywania, co oznacza, że jeżeli tabela o tej samej nazwie już istnieje, zostanie zastąpiona.
 
-_TU WRZUCIĆ BŁĄD, KTÓRY NAM WYWALIŁO_
+Pliki zostały wgrane do naszego bucketa w GCS:
+![image](https://github.com/user-attachments/assets/3671b7f6-b60d-4862-8c35-30827886b4d2)
 
 9. Using SparkSQL answer: how many table were created in each layer?
 
    ***SparkSQL command and output***
    
 _TU JAKIŚ SCREEN Z GOOGLE CLOUD STORAGE, ŻE TE DANE ZOSTAŁY WRZUCONE, POWSTAŁY JAKIEŚ TABELE CZY COŚ_
-![image](https://github.com/user-attachments/assets/032d2f19-d49d-46a1-b2e0-19ed061043cd)
+
 
 11. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. ***Add new tests to your repository.***
 
