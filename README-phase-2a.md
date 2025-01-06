@@ -76,8 +76,10 @@ the running instance of your Vertex AI Workbench
 
 
 7. Explore files created by generator and describe them, including format, content, total size.
-   
-   Plik _Batch1_audit.csv_ zawiera dwa wiersze informujące o przedziale czasowym, z którego pochodzą dane - dane z przeprowadzanego audytu finansowego. Pierwszy wiersz przedstawia datę początkową (rok 1950), a drugi – datę końcową (rok 2017). Dane te obejmują zatem rozległy okres historyczny. Analogiczne informacje znajdują się w plikach _Batch2_audit.csv_ oraz _Batch3_audit.csv_, lecz dotyczą one bardziej aktualnych i krótszych przedziałów czasowych:
+
+Wygenerowany zestaw danych to TPC-DI (Transaction Processing Performance Council - Data Integration). TPC-DI jest standardem do testowania wydajności baz danych przy użyciu generowanych danych.
+
+Plik _Batch1_audit.csv_ zawiera dwa wiersze informujące o przedziale czasowym, z którego pochodzą dane - dane z przeprowadzanego audytu finansowego. Pierwszy wiersz przedstawia datę początkową (rok 1950), a drugi – datę końcową (rok 2017). Dane te obejmują zatem rozległy okres historyczny. Analogiczne informacje znajdują się w plikach _Batch2_audit.csv_ oraz _Batch3_audit.csv_, lecz dotyczą one bardziej aktualnych i krótszych przedziałów czasowych:
 _Batch2_audit.csv_ zawiera dane z dnia 2017-07-08 (odpowiadające dniowi poprzedniemu),
 _Batch3_audit.csv_ odnosi się do dnia 2017-07-09 (reprezentując dzień bieżący).
 
