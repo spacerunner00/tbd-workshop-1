@@ -76,18 +76,29 @@ the running instance of your Vertex AI Workbench
 
 
 7. Explore files created by generator and describe them, including format, content, total size.
+   
+   Plik _Batch1_audit.csv_ zawiera dwa wiersze informujące o przedziale czasowym, z którego pochodzą dane - dane z przeprowadzanego audytu finansowego. Pierwszy wiersz przedstawia datę początkową (rok 1950), a drugi – datę końcową (rok 2017). Dane te obejmują zatem rozległy okres historyczny. Analogiczne informacje znajdują się w plikach _Batch2_audit.csv_ oraz _Batch3_audit.csv_, lecz dotyczą one bardziej aktualnych i krótszych przedziałów czasowych:
+_Batch2_audit.csv_ zawiera dane z dnia 2017-07-08 (odpowiadające dniowi poprzedniemu),
+_Batch3_audit.csv_ odnosi się do dnia 2017-07-09 (reprezentując dzień bieżący).
 
-   ***Files desccription***
+W folderach _Batch1, Batch2_ oraz _Batch3_ znajdują się dane dotyczą różnych aspektów działalności audytowanych przedsiębiorstw, obejmujące takie obszary jak transakcje gotówkowe (Cash transaction), zarządzanie klientami (Customer management) czy codzienny rynek (Daily market).
 
-8. Analyze tpcdi.py. What happened in the loading stage?
+Do każdej dziedziny danych wygenerowane zostały dwa pliki - jeden w formacie csv, drugi w txt (przykładowo _TradeHistory_audit.csv_ oraz _TradeHistory.txt_). Plik CSV zawiera podsumowanie i agregację danych, przedstawiając różne atrybuty związane z daną dziedziną. Znajdują się tam takie informacje jak liczba rekordów, operacji czy zdarzeń w określonym okresie czasu. Może zawierać również dane o stanie różnych elementów, takich jak liczba utworzonych kont, zamkniętych transakcji, zaktualizowanych informacji, itp. 
+Plik TXT zawiera już szczegółowe dane o każdym rejestrowanym zdarzeniu, często w formie zapisów transakcji lub innych jednostkowych zdarzeń. Zawiera informacje takie jak daty, wartości operacji, identyfikatory, a także inne szczegóły związane z każdym zdarzeniem. W przeciwieństwie do pliku CSV, plik tekstowy może być używany do bardziej zaawansowanej analizy, np. w przypadku potrzeby prześledzenia poszczególnych operacji w danej dziedzinie.
+
+_tu wkleić screena z wygenerowanego raportu danych_
+
+Łączny rozmiar danych: X GB.
+
+9. Analyze tpcdi.py. What happened in the loading stage?
 
    ***Your answer***
 
-9. Using SparkSQL answer: how many table were created in each layer?
+10. Using SparkSQL answer: how many table were created in each layer?
 
    ***SparkSQL command and output***
 
-10. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. ***Add new tests to your repository.***
+11. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. ***Add new tests to your repository.***
 
    ***Code and description of your tests***
 
