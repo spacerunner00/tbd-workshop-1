@@ -18,7 +18,7 @@ Worth to read:
 
 2. Authors:
    Aleksandra 1 2 3
-   Gabriel 0 1
+   Gabriel 0 1 2
    Jakub 0
    ***Enter your group nr***
 
