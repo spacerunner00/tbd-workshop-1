@@ -114,7 +114,43 @@ _TU JAKIŚ SCREEN Z GOOGLE CLOUD STORAGE, ŻE TE DANE ZOSTAŁY WRZUCONE, POWSTA�
 
 11. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. **_Add new tests to your repository._**
 
-    **_Code and description of your tests_**
+      Link do folderu z testami: [test](https://github.com/spacerunner00/tbd-tpc-di/tree/branch-02-test/tests)
+
+  [Test 1.](https://github.com/spacerunner00/tbd-tpc-di/blob/branch-02-test/tests/assert_fact_trade_executed_by_not_empty.sql) Sprawdza, czy wartości w kolumnie ``execuded_by`` nie są NULL ani puste.
+   ```SQL
+      SELECT
+          sk_trade_id,
+          executed_by
+      FROM {{ ref('fact_trade') }}
+      WHERE executed_by IS NULL OR executed_by = ''
+   ```
+[Test 2.](https://github.com/spacerunner00/tbd-tpc-di/blob/branch-02-test/tests/assert_fact_trade_sk_trade_id_not_null.sql) Sprawdza, czy wartości w kolumnie ``sk_trade_id`` nie są NULL.
+  ```SQL
+    SELECT
+        sk_trade_id
+    FROM {{ ref('fact_trade') }}
+    WHERE sk_trade_id IS NULL
+  ```
+
+[Test 3.](https://github.com/spacerunner00/tbd-tpc-di/blob/branch-02-test/tests/assert_total_payment_amount_is_positive.sql) Sprawdza, czy suma wartości w kolumnie ``amount`` dla każdego ``order_id`` nie jest ujemna.
+  ```SQL
+      select
+          order_id,
+          sum(amount) as total_amount
+      from {{ ref('fct_payments') }}
+      group by 1
+      having total_amount < 0
+  ```
+
+[Test 4.](https://github.com/spacerunner00/tbd-tpc-di/blob/branch-02-test/tests/assert_trade_price_is_non_negative.sql) Sprawdza, czy wartości w kolumnie ``trade_price`` dla każdego ``sk_trade_id`` nie są ujemne.
+ ```SQL
+       SELECT
+        sk_trade_id,
+        trade_price
+    FROM {{ ref('fact_trade') }}
+    WHERE trade_price < 0
+  ```
+
 
 12. In main.tf update
 
