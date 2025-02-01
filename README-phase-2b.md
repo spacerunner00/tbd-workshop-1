@@ -33,8 +33,8 @@ Nasze dane były stworzone z scale factor = 10 (krok "Generate input dataset" w 
 
 5. In the notebook, collect console output from dbt run, then parse it and retrieve total execution time and execution times of processing each model. Save the results from each number of executors.
 
-| Index | Model                                  | 1 Executor  | 2 Executors | 5 Executors |
-| ----- | -------------------------------------- | ----------- | ----------- | ----------- |
+| Index | Model                                  | 1 Executor (s) | 2 Executors (s) | 5 Executors (s) |
+| ----- | -------------------------------------- | -------------- | --------------- | --------------- |
 | 1     | demo_bronze.brokerage_cash_transaction | 14.95       | 15.55       | 16.59       |
 | 2     | demo_bronze.brokerage_daily_market     | 16.42       | 13.13       | 9.38        |
 | 3     | demo_bronze.brokerage_holding_history  | 2.97        | 2.47        | 2.24        |
