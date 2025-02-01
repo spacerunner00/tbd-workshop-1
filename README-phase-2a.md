@@ -53,20 +53,21 @@ Worth to read:
 
 6.  Access Vertex AI Workbench and run cell by cell notebook `tpc-di-setup.ipynb`.
 
-    a) in the first cell of the notebook replace: `%env DATA_BUCKET=tbd-2023z-9910-data` with your data bucket.
+        a) in the first cell of the notebook replace: `%env DATA_BUCKET=tbd-2023z-9910-data` with your data bucket.
 
-    b) in the cell:
-    `%%bash
-mkdir -p git && cd git
-git clone https://github.com/mwiewior/tbd-tpc-di.git
-cd tbd-tpc-di
-git pull
-`
+        b) in the cell:
+        `%%bash
+
+    mkdir -p git && cd git
+    git clone https://github.com/mwiewior/tbd-tpc-di.git
+    cd tbd-tpc-di
+    git pull
+    `
     replace repo with your fork. Next checkout to 'notebook' branch.
 
-    c) after running first cells your fork of `tbd-tpc-di` repository will be cloned into Vertex AI enviroment (see git folder).
+        c) after running first cells your fork of `tbd-tpc-di` repository will be cloned into Vertex AI enviroment (see git folder).
 
-    d) take a look on `git/tbd-tpc-di/profiles.yaml`. This file includes Spark parameters that can be changed if you need to increase the number of executors and
+        d) take a look on `git/tbd-tpc-di/profiles.yaml`. This file includes Spark parameters that can be changed if you need to increase the number of executors and
 
 ```
  server_side_parameters:
@@ -126,7 +127,6 @@ so dbt_git_repo points to your fork of tbd-tpc-di.
 
 12. Redeploy infrastructure and check if the DAG finished with no errors:
 
-**_The screenshot of Apache Aiflow UI_**
 ![img.png](shared-files/phase2/2a-step-12-1.png)
 ![img.png](shared-files/phase2/2a-step-12-2.png)
 ![img.png](shared-files/phase2/2a-step-12-3.png)
