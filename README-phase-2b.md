@@ -87,3 +87,5 @@ Nasze dane były stworzone z scale factor = 10 (krok "Generate input dataset" w 
 | 5                 |  329.15        |
 
 6. Analyze the performance and scalability of execution times of each model. Visualize and discucss the final results.
+
+![img.png](shared-files/phase2/execution_times_plot.png)
