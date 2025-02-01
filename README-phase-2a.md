@@ -164,7 +164,7 @@ dbt_git_repo_branch     = "main"
 
 so dbt_git_repo points to your fork of tbd-tpc-di.
 
-We changed dbt_git_repo so it points to our fork:
+Zmieniliśmy wartość parametru żeby wskazywała na naszego forka:
 
 ```
 dbt_git_repo            = "https://github.com/spacerunner00/tbd-tpc-di.git""
