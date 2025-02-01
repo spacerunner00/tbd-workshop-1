@@ -81,6 +81,7 @@ Nasze dane były stworzone z scale factor = 10 (krok "Generate input dataset" w 
 
 
 | Liczba executorów | Czas całkowity |
+| ----------------- | -------------- |
 | 1                 |  683.71        |
 | 2                 |  438.61        |
 | 5                 |  329.15        |
