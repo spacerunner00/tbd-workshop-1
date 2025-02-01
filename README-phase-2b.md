@@ -80,11 +80,11 @@ Nasze dane były stworzone z scale factor = 10 (krok "Generate input dataset" w 
 | 43    | demo_gold.fact_cash_balances           | 13.18       | 8.89        | 15.44       |
 
 
-| Liczba executorów | Czas całkowity |
-| ----------------- | -------------- |
-| 1                 |  683.71        |
-| 2                 |  438.61        |
-| 5                 |  329.15        |
+| Liczba executorów | Czas całkowity | Czas całkowity wykonania kroku Run dbt ELT |
+| ----------------- | -------------- | ------------------------------------------ |
+| 1                 |  683.71        | 730.48                                     |
+| 2                 |  438.61        | 489.12                                     |
+| 5                 |  329.15        | 377.12                                     |
 
 6. Analyze the performance and scalability of execution times of each model. Visualize and discucss the final results.
 
