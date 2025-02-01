@@ -93,10 +93,10 @@ Nasze dane były stworzone z scale factor = 10 (krok "Generate input dataset" w 
 
 ## Wnioski dotyczące zmiany liczby executorów
 - Przy większej liczbie executorów czas wykonania dbt ulega skróceniu.
-- Im więcej instancji executorów było dostępnych, tym szybciej przetwarzane były modele dbt.
-Największa poprawa wydajności wystąpiła przy zmianie z 1 na 2 executory
-- Czas wykonania spadł z **730.48s** do **489.12s**, co stanowi redukcję o **33%**.
-- Przejście z **2 do 5 executorów** nadal przyniosło poprawę, ale już mniejszą – czas zmniejszył się z **489.12s** do **377.12s** (**22% mniej**).
+- Im więcej instancji executorów było dostępnych, tym szybciej przetwarzane były modele.
+- Największa poprawa wydajności wystąpiła przy zmianie z 1 na 2 executory
+-- Czas wykonania spadł z **730.48s** do **489.12s**, co stanowi redukcję o **33%**.
+-- Przejście z **2 do 5 executorów** nadal przyniosło poprawę, ale już mniejszą – czas zmniejszył się z **489.12s** do **377.12s** (**22% mniej**).
 - Przyrost liczby executorów **nie daje liniowej poprawy wydajności**.
 - O ile wzrost z **1 do 2 executorów** przyniósł duży skok w wydajności, to przejście na **5 executorów** nie było już aż tak znaczące.
 - Wynika to z kosztów komunikacji i synchronizacji między executorami oraz możliwego ograniczenia wydajności po stronie **drivera** lub **HDFS**.
