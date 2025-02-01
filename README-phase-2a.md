@@ -20,9 +20,11 @@ Worth to read:
 
 2.  Authors:
 
-    Team 13
+- Aleksandra Gryzik
+- Gabriel Skowron-Rodriguez
+- Jakub Rozkosz
 
-    [**_Link to forked repo_**](https://github.com/spacerunner00/tbd-workshop-1)
+  **_Link to forked repo_:** [https://github.com/spacerunner00/tbd-workshop-1](https://github.com/spacerunner00/tbd-workshop-1)
 
 3.  Sync your repo with https://github.com/bdg-tbd/tbd-workshop-1.
 
