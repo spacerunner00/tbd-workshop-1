@@ -112,11 +112,11 @@ Pliki zostały wgrane do naszego bucketa w GCS:
 
 _TU JAKIŚ SCREEN Z GOOGLE CLOUD STORAGE, ŻE TE DANE ZOSTAŁY WRZUCONE, POWSTAŁY JAKIEŚ TABELE CZY COŚ_
 
-11. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. **_Add new tests to your repository._**
+10. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. **_Add new tests to your repository._**
 
     **_Code and description of your tests_**
 
-12. In main.tf update
+11. In main.tf update
 
 ```
 dbt_git_repo            = "https://github.com/mwiewior/tbd-tpc-di.git"
@@ -124,6 +124,13 @@ dbt_git_repo_branch     = "main"
 ```
 
 so dbt_git_repo points to your fork of tbd-tpc-di.
+
+We changed dbt_git_repo so it points to our fork:
+
+```
+dbt_git_repo            = "https://github.com/spacerunner00/tbd-tpc-di.git""
+dbt_git_repo_branch     = "main"
+```
 
 12. Redeploy infrastructure and check if the DAG finished with no errors:
 
