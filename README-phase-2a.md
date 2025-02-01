@@ -108,9 +108,8 @@ Pliki zostały wgrane do naszego bucketa w GCS:
 
 9. Using SparkSQL answer: how many table were created in each layer?
 
-   **_SparkSQL command and output_**
-
-_TU JAKIŚ SCREEN Z GOOGLE CLOUD STORAGE, ŻE TE DANE ZOSTAŁY WRZUCONE, POWSTAŁY JAKIEŚ TABELE CZY COŚ_
+![image](https://github.com/user-attachments/assets/19e7ebf0-9071-4795-81f0-2e8f76c7162f)
+![image](https://github.com/user-attachments/assets/28ded90e-2cfc-4d07-9d48-79ba127d70bf)
 
 10. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. **_Add new tests to your repository._**
 
