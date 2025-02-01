@@ -3,77 +3,78 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 ![img.png](doc/figures/destroy.png)
 
 0. The goal of this phase is to create infrastructure, perform benchmarking/scalability tests of sample three-tier lakehouse solution and analyze the results using:
-* [TPC-DI benchmark](https://www.tpc.org/tpcdi/)
-* [dbt - data transformation tool](https://www.getdbt.com/)
-* [GCP Composer - managed Apache Airflow](https://cloud.google.com/composer?hl=pl)
-* [GCP Dataproc - managed Apache Spark](https://spark.apache.org/)
-* [GCP Vertex AI Workbench - managed JupyterLab](https://cloud.google.com/vertex-ai-notebooks?hl=pl)
+
+- [TPC-DI benchmark](https://www.tpc.org/tpcdi/)
+- [dbt - data transformation tool](https://www.getdbt.com/)
+- [GCP Composer - managed Apache Airflow](https://cloud.google.com/composer?hl=pl)
+- [GCP Dataproc - managed Apache Spark](https://spark.apache.org/)
+- [GCP Vertex AI Workbench - managed JupyterLab](https://cloud.google.com/vertex-ai-notebooks?hl=pl)
 
 Worth to read:
-* https://docs.getdbt.com/docs/introduction
-* https://airflow.apache.org/docs/apache-airflow/stable/index.html
-* https://spark.apache.org/docs/latest/api/python/index.html
-* https://medium.com/snowflake/loading-the-tpc-di-benchmark-dataset-into-snowflake-96011e2c26cf
-* https://www.databricks.com/blog/2023/04/14/how-we-performed-etl-one-billion-records-under-1-delta-live-tables.html
 
-2. Authors:
+- https://docs.getdbt.com/docs/introduction
+- https://airflow.apache.org/docs/apache-airflow/stable/index.html
+- https://spark.apache.org/docs/latest/api/python/index.html
+- https://medium.com/snowflake/loading-the-tpc-di-benchmark-dataset-into-snowflake-96011e2c26cf
+- https://www.databricks.com/blog/2023/04/14/how-we-performed-etl-one-billion-records-under-1-delta-live-tables.html
 
-   ***Enter your group nr***
+2.  Authors:
 
-   ***Link to forked repo***
+    **_Enter your group nr_**
 
-3. Sync your repo with https://github.com/bdg-tbd/tbd-workshop-1.
+    **_Link to forked repo_**
 
-4. Provision your infrastructure.
+3.  Sync your repo with https://github.com/bdg-tbd/tbd-workshop-1.
 
-    a) setup Vertex AI Workbench `pyspark` kernel as described in point [8](https://github.com/bdg-tbd/tbd-workshop-1/tree/v1.0.32#project-setup) 
+4.  Provision your infrastructure.
 
-    b) upload [tpc-di-setup.ipynb](https://github.com/bdg-tbd/tbd-workshop-1/blob/v1.0.36/notebooks/tpc-di-setup.ipynb) to 
-the running instance of your Vertex AI Workbench
+        a) setup Vertex AI Workbench `pyspark` kernel as described in point [8](https://github.com/bdg-tbd/tbd-workshop-1/tree/v1.0.32#project-setup)
 
-5. In `tpc-di-setup.ipynb` modify cell under section ***Clone tbd-tpc-di repo***:
+        b) upload [tpc-di-setup.ipynb](https://github.com/bdg-tbd/tbd-workshop-1/blob/v1.0.36/notebooks/tpc-di-setup.ipynb) to
 
-   a)first, fork https://github.com/mwiewior/tbd-tpc-di.git to your github organization.
+    the running instance of your Vertex AI Workbench
 
-   b)create new branch (e.g. 'notebook') in your fork of tbd-tpc-di and modify profiles.yaml by commenting following lines:
-   ```  
-        #"spark.driver.port": "30000"
-        #"spark.blockManager.port": "30001"
-        #"spark.driver.host": "10.11.0.5"  #FIXME: Result of the command (kubectl get nodes -o json |  jq -r '.items[0].status.addresses[0].address')
-        #"spark.driver.bindAddress": "0.0.0.0"
-   ```
-   This lines are required to run dbt on airflow but have to be commented while running dbt in notebook.
+5.  In `tpc-di-setup.ipynb` modify cell under section **_Clone tbd-tpc-di repo_**:
 
-   c)update git clone command to point to ***your fork***.
+    a)first, fork https://github.com/mwiewior/tbd-tpc-di.git to your github organization.
 
- 
+    b)create new branch (e.g. 'notebook') in your fork of tbd-tpc-di and modify profiles.yaml by commenting following lines:
 
+    ```
+         #"spark.driver.port": "30000"
+         #"spark.blockManager.port": "30001"
+         #"spark.driver.host": "10.11.0.5"  #FIXME: Result of the command (kubectl get nodes -o json |  jq -r '.items[0].status.addresses[0].address')
+         #"spark.driver.bindAddress": "0.0.0.0"
+    ```
 
-6. Access Vertex AI Workbench and run cell by cell notebook `tpc-di-setup.ipynb`.
+    This lines are required to run dbt on airflow but have to be commented while running dbt in notebook.
+
+    c)update git clone command to point to **_your fork_**.
+
+6.  Access Vertex AI Workbench and run cell by cell notebook `tpc-di-setup.ipynb`.
 
     a) in the first cell of the notebook replace: `%env DATA_BUCKET=tbd-2023z-9910-data` with your data bucket.
 
+    b) in the cell:
+    `%%bash
+mkdir -p git && cd git
+git clone https://github.com/mwiewior/tbd-tpc-di.git
+cd tbd-tpc-di
+git pull
+`
+    replace repo with your fork. Next checkout to 'notebook' branch.
 
-   b) in the cell:
-         ```%%bash
-         mkdir -p git && cd git
-         git clone https://github.com/mwiewior/tbd-tpc-di.git
-         cd tbd-tpc-di
-         git pull
-         ```
-      replace repo with your fork. Next checkout to 'notebook' branch.
-   
-    c) after running first cells your fork of `tbd-tpc-di` repository will be cloned into Vertex AI  enviroment (see git folder).
+    c) after running first cells your fork of `tbd-tpc-di` repository will be cloned into Vertex AI enviroment (see git folder).
 
     d) take a look on `git/tbd-tpc-di/profiles.yaml`. This file includes Spark parameters that can be changed if you need to increase the number of executors and
-  ```
-   server_side_parameters:
-       "spark.driver.memory": "2g"
-       "spark.executor.memory": "4g"
-       "spark.executor.instances": "2"
-       "spark.hadoop.hive.metastore.warehouse.dir": "hdfs:///user/hive/warehouse/"
-  ```
 
+```
+ server_side_parameters:
+     "spark.driver.memory": "2g"
+     "spark.executor.memory": "4g"
+     "spark.executor.instances": "2"
+     "spark.hadoop.hive.metastore.warehouse.dir": "hdfs:///user/hive/warehouse/"
+```
 
 7. Explore files created by generator and describe them, including format, content, total size.
 
@@ -85,7 +86,7 @@ _Batch3_audit.csv_ odnosi się do dnia 2017-07-09 (reprezentując dzień bieżą
 
 W folderach _Batch1, Batch2_ oraz _Batch3_ znajdują się dane dotyczą różnych aspektów działalności audytowanych przedsiębiorstw, obejmujące takie obszary jak transakcje gotówkowe (Cash transaction), zarządzanie klientami (Customer management) czy codzienny rynek (Daily market).
 
-Do każdej dziedziny danych wygenerowane zostały dwa pliki - jeden w formacie csv, drugi w txt (przykładowo _TradeHistory_audit.csv_ oraz _TradeHistory.txt_). Plik CSV zawiera podsumowanie i agregację danych, przedstawiając różne atrybuty związane z daną dziedziną. Znajdują się tam takie informacje jak liczba rekordów, operacji czy zdarzeń w określonym okresie czasu. Może zawierać również dane o stanie różnych elementów, takich jak liczba utworzonych kont, zamkniętych transakcji, zaktualizowanych informacji, itp. 
+Do każdej dziedziny danych wygenerowane zostały dwa pliki - jeden w formacie csv, drugi w txt (przykładowo _TradeHistory_audit.csv_ oraz _TradeHistory.txt_). Plik CSV zawiera podsumowanie i agregację danych, przedstawiając różne atrybuty związane z daną dziedziną. Znajdują się tam takie informacje jak liczba rekordów, operacji czy zdarzeń w określonym okresie czasu. Może zawierać również dane o stanie różnych elementów, takich jak liczba utworzonych kont, zamkniętych transakcji, zaktualizowanych informacji, itp.
 Plik TXT zawiera już szczegółowe dane o każdym rejestrowanym zdarzeniu, często w formie zapisów transakcji lub innych jednostkowych zdarzeń. Zawiera informacje takie jak daty, wartości operacji, identyfikatory, a także inne szczegóły związane z każdym zdarzeniem. W przeciwieństwie do pliku CSV, plik tekstowy może być używany do bardziej zaawansowanej analizy, np. w przypadku potrzeby prześledzenia poszczególnych operacji w danej dziedzinie.
 
 Podsumowanie liczby rekordów:
@@ -95,7 +96,7 @@ Podsumowanie liczby rekordów:
 
 8. Analyze tpcdi.py. What happened in the loading stage?
 
-W kodzie tpcdi.py, który uruchamiany był w loading stage, zdefiniowana jest funkcja _upload_files_, która przesyła pliki do Google Cloud Storage lub innej lokalizacji wskazanej przez stage_path. Funkcja ta przeszukuje katalog output_directory w poszukiwaniu plików pasujących do wzorca, a następnie w zależności od typu pliku ustawia odpowiedni delimiter (np. przecinek dla CSV). Następnie pliki są przesyłane do chmury, a ich nazwa jest używana jako nazwa bloba w GCS. Jest ona wywoływana przez funkcję _load_csv_.
+W kodzie tpcdi.py, który uruchamiany był w loading stage, zdefiniowana jest funkcja _upload_files_, która przesyła pliki do Google Cloud Storage lub innej lokalizacji wskazanej przez stage*path. Funkcja ta przeszukuje katalog output_directory w poszukiwaniu plików pasujących do wzorca, a następnie w zależności od typu pliku ustawia odpowiedni delimiter (np. przecinek dla CSV). Następnie pliki są przesyłane do chmury, a ich nazwa jest używana jako nazwa bloba w GCS. Jest ona wywoływana przez funkcję \_load_csv*.
 
 Kolejnym krokiem jest funkcja _load_csv_, która odpowiedzialna jest za załadowanie plików CSV z GCS do DataFrame w Spark. Na początku ustalana jest ścieżka do wgranego pliku, a potem wywoływana jest funkcja _upload_files_, która załadowuje pliki do GCS. Następnie dane z GCS są wczytywane przy użyciu Spark, z uwzględnieniem podanego schematu, który opisuje strukturę danych w pliku. Po załadowaniu danych, wynikowy DataFrame jest przekazywany do funkcji _save_df_.
 
@@ -106,22 +107,28 @@ Pliki zostały wgrane do naszego bucketa w GCS:
 
 9. Using SparkSQL answer: how many table were created in each layer?
 
-   ***SparkSQL command and output***
-   
+   **_SparkSQL command and output_**
+
 _TU JAKIŚ SCREEN Z GOOGLE CLOUD STORAGE, ŻE TE DANE ZOSTAŁY WRZUCONE, POWSTAŁY JAKIEŚ TABELE CZY COŚ_
 
+11. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. **_Add new tests to your repository._**
 
-11. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. ***Add new tests to your repository.***
+    **_Code and description of your tests_**
 
-   ***Code and description of your tests***
+12. In main.tf update
 
-11. In main.tf update
-   ```
-   dbt_git_repo            = "https://github.com/mwiewior/tbd-tpc-di.git"
-   dbt_git_repo_branch     = "main"
-   ```
-   so dbt_git_repo points to your fork of tbd-tpc-di. 
+```
+dbt_git_repo            = "https://github.com/mwiewior/tbd-tpc-di.git"
+dbt_git_repo_branch     = "main"
+```
+
+so dbt_git_repo points to your fork of tbd-tpc-di.
 
 12. Redeploy infrastructure and check if the DAG finished with no errors:
 
-***The screenshot of Apache Aiflow UI***
+**_The screenshot of Apache Aiflow UI_**
+![img.png](shared-files/phase2/2a-step-12-1.png)
+![img.png](shared-files/phase2/2a-step-12-2.png)
+![img.png](shared-files/phase2/2a-step-12-3.png)
+![img.png](shared-files/phase2/2a-step-12-4.png)
+![img.png](shared-files/phase2/2a-step-12-5.png)
